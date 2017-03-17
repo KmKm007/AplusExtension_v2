@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
 import createLogger from 'redux-logger'
-import Router from './router/MainRouter'
+import AppRouter from './router/MainRouter'
 
 const middleWare = [ thunk, createLogger()]
 
@@ -14,6 +14,6 @@ const store = createStore(reducers, applyMiddleware(...middleWare))
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router />
+    <AppRouter />
   </Provider>, document.getElementById('app')
 )
