@@ -11,7 +11,7 @@ const receiveData = (state, action) => {
   return dataList
 }
 
-const dataList = (state = [], action) => {
+const dataList = (state = initialState, action) => {
   switch (action.type) {
     case types.REQUEST_DATA:
       return requestData(state)
@@ -21,3 +21,5 @@ const dataList = (state = [], action) => {
       return state
   }
 }
+
+export default dataList

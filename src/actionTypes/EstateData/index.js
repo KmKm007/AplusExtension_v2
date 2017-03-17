@@ -1,11 +1,11 @@
-import * as dataListActionType from './dataActionType'
-import * as pageObjectActionType from './pageActionType'
+import * as dataListActionType from './dataListActionType'
+import * as pageObjectActionType from './pageObjectActionType'
 import * as sortRuleActionType from './sortRuleActionType'
 import * as dataStatusActionType from './dataStatusActionType'
 
 const actionTypes = {
-  ...dataActionType,
-  ...pageActionType,
+  ...dataListActionType,
+  ...pageObjectActionType,
   ...sortRuleActionType,
   ...dataStatusActionType
 }

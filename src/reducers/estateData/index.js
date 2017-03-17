@@ -1,5 +1,3 @@
-import sortRule from './sortRule'
-import * as types from '../../actionTypes/EstateData'
 import { combineReducers } from 'redux'
 import dataList from './dataListReducer'
 import pageObject from './pageObjectReducer'
