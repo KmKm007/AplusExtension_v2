@@ -1,11 +1,11 @@
-export const CHANGE_ORDER_RULE = 'CHANGE_ORDER_RULE'
+import * as dataActionType from './dataActionType'
+import * as pageActionType from './pageActionType'
+import * as sortRuleActionType from './sortRuleActionType'
 
-export const FETCH_NEXT_PAGE = 'FETCH_NEXT_PAGE'
+const actionTypes = {
+  ...dataActionType,
+  ...pageActionType,
+  ...sortRuleActionType
+}
 
-export const FETCH_SELECTED_PAGE = 'FETCH_SELECTED_PAGE'
-
-export const FETCH_PRE_PAGE = 'FETCH_PRE_PAGE'
-
-export const FETCH_FIRST_PAGE = 'FETCH_FIRST_PAGE'
-
-export const FETCH_LAST_PAGE = 'FETCH_LAST_PAGE'
+export default actionTypes
