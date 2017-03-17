@@ -1,7 +1,19 @@
-import 'core-js/fn/object/assign'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/Main'
+import { applyMiddleware, createStore } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import reducers from './reducers'
+import createLogger from 'redux-logger'
+import Router from './router/MainRouter'
 
-// Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('app'))
+const middleWare = [ thunk, createLogger()]
+
+const store = createStore(reducers, applyMiddleware(...middleWare))
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router />
+  </Provider>, document.getElementById('app')
+)
