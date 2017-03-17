@@ -2,7 +2,7 @@ import estateData from './estateData'
 import { combineReducers } from 'redux'
 
 const app = combineReducers({
-estateData
+  estateData
 })
 
 export default app
