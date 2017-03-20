@@ -13,8 +13,6 @@ const middleWare = [ thunk, createLogger()]
 
 const store = createStore(reducers, applyMiddleware(...middleWare))
 
-store.dispatch(actions.fetchData(null))
-
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />
