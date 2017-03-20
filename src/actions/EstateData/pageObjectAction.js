@@ -1,5 +1,10 @@
 import types from '../../actionTypes/EstateData'
 
+export const updatePageObject = dataList => ({
+  type: types.UPDATE_PAGE_OBJECT,
+  dataList
+})
+
 export const fetchFirstPage = () => ({
   type: types.FETCH_FIRST_PAGE
 })
