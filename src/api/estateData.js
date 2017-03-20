@@ -38,3 +38,22 @@ export const fetchServerExportDataCode  = (filter, callBack) => {
 export const downloadServerData = code => {
   window.location.href = `${downloadUrl}?code=${code}`
 }
+
+export const fetchServerRegionList = callBack => {
+  fetch(regionListUrl, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+  .then(response => {
+    if (response.ok && response.status === 200)
+      return response.json()
+  })
+  .then(responseJson => {
+    if (responseJson.status === 0) {
+      callBack(responseJson.dataList)
+    } else {
+      console.log('异常')
+    }
+  })
+}
