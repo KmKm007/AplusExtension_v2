@@ -8,26 +8,6 @@ const initialStatus = {
   totalRow: null
 }
 
-const fetchNextPage = state => {
-  const { currentPage, maxPage } = state
-  if (currentPage < maxPage )
-    return {
-      ...state,
-      currentPage: currentPage + 1
-    }
-  return state
-}
-
-const fetchPrePage = state => {
-  const currentPage  = state.currentPage
-  if (currentPage <= 1)
-    return state
-  return {
-    ...state,
-    currentPage: currentPage -1
-  }
-}
-
 const fetchSelectedPage = (state, action) => {
   const { currentPage, maxPage } = state
   const selectedPage = action.selectedPage
@@ -41,38 +21,25 @@ const fetchSelectedPage = (state, action) => {
   }
 }
 
-const fetchFirstPage = state => {
-  const currentPage = state.currentPage
-  if (currentPage === 1)
-    return state
+const updatePageObject = (state, action) => {
+  const dataList = action.dataList
+  const pageSize = state.pageSize
+  const length = dataList.length
+  const maxPage = length % pageSize === 0 ? length / pageSize : ( parseInt( length /pageSize ) +1 )
   return {
     ...state,
-    currentPage: 1
-  }
-}
-
-const fetchLastPage = state => {
-  const { currentPage,maxPage }= state
-  if (currentPage === maxPage)
-    return state
-  return {
-    ...state,
-    currentPage: maxPage
+    currentPage: 1,
+    maxPage,
+    totalRow: length
   }
 }
 
 const pageObject = (state = initialStatus, action) => {
   switch (action.type) {
-    case types.FETCH_NEXT_PAGE:
-      return fetchNextPage(state)
-    case types.FETCH_PRE_PAGE:
-      return fetchPrePage(state)
-    case types.FETCH_FIRST_PAGE:
-      return fetchFirstPage(state)
-    case types.FETCH_LAST_PAGE:
-      return fetchLastPage(state)
     case types.FETCH_SELECTED_PAGE:
       return fetchSelectedPage(state, action)
+    case types.UPDATE_PAGE_OBJECT:
+      return updatePageObject(state, action)
     default:
       return state
   }
