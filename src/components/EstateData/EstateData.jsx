@@ -53,7 +53,9 @@ class EstateData extends React.Component {
   render () {
     let activeHeaderClass = cs('table-header', 'active-table-header')
     let headerClass = cs('table-header')
-    let sortRule = this.props.sortRule
+    const { sortRule, handlePropertyCountClick, handleAvaPropertyCountClick,
+      handleRealPropertyCountClick, handleKeyPropertyCountClick, handleTrustRecPropertyCountClick,
+      handleDMRecomPropertyCountClick, handleBMRecomPropertyCountClick } = this.props
     return (
       <div>
         <Table fixedHeader={true} >
@@ -67,37 +69,37 @@ class EstateData extends React.Component {
               <TableHeaderColumn style={style.t7}>楼盘</TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'PROPERTYCOUNT_ASC' || sortRule === 'PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handlePropertyCountClick}>房源总数
+                  onClick={() => handlePropertyCountClick(sortRule)}>房源总数
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'AVA_PROPERTYCOUNT_DESC' || sortRule === 'AVA_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleAvaPropertyCountClick}>有效房源
+                  onClick={() => handleAvaPropertyCountClick(sortRule)}>有效房源
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'REALSUR_PROPERTYCOUNT_ASC' || sortRule === 'REALSUR_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleRealPropertyCountClick}>实勘房源
+                  onClick={() => handleRealPropertyCountClick(sortRule)}>实勘房源
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'KEY_PROPERTYCOUNT_ASC' || sortRule === 'KEY_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleKeyPropertyCountClick}>钥匙房源
+                  onClick={() => handleKeyPropertyCountClick(sortRule)}>钥匙房源
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'TRUSTREC_PROPERTYCOUNT_ASC' || sortRule === 'TRUSTREC_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleTrustRecPropertyCountClick}>委托房源
+                  onClick={() => handleTrustRecPropertyCountClick(sortRule)}>委托房源
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'BMRECOM_PROPERTYCOUNT_ASC' || sortRule === 'BMRECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleBMRecomPropertyCountClick}>经理推荐
+                  onClick={() => handleBMRecomPropertyCountClick(sortRule)}>经理推荐
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'DMRECOM_PROPERTYCOUNT_ASC' || sortRule === 'DMRECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={this.props.handleDMRecomPropertyCountClick}>区经推荐
+                  onClick={() => handleDMRecomPropertyCountClick(sortRule)}>区经推荐
                 </a>
               </TableHeaderColumn>
             </TableRow>

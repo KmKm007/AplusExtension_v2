@@ -27,13 +27,14 @@ class EstateDataContainer extends React.Component {
       <div>
         <EstateData
           dataList={dataList}
-          handleRealPropertyCountClick={() => handleRealPropertyCountClick(sortRule)}
-          handlePropertyCountClick={() => handlePropertyCountClick(sortRule)}
-          handleAvaPropertyCountClick={() => handleAvaPropertyCountClick(sortRule)}
-          handleKeyPropertyCountClick={() => handleKeyPropertyCountClick(sortRule)}
-          handleBMRecomPropertyCountClick={() => handleBMRecomPropertyCountClick(sortRule)}
-          handleDMRecomPropertyCountClick={() => handleDMRecomPropertyCountClick(sortRule)}
-          handleTrustRecPropertyCountClick={() => handleTrustRecPropertyCountClick(sortRule)}
+          sortRule={sortRule}
+          handleRealPropertyCountClick={handleRealPropertyCountClick}
+          handlePropertyCountClick={handlePropertyCountClick}
+          handleAvaPropertyCountClick={handleAvaPropertyCountClick}
+          handleKeyPropertyCountClick={handleKeyPropertyCountClick}
+          handleBMRecomPropertyCountClick={handleBMRecomPropertyCountClick}
+          handleDMRecomPropertyCountClick={handleDMRecomPropertyCountClick}
+          handleTrustRecPropertyCountClick={handleTrustRecPropertyCountClick}
         />
       <PageObjectContainer
         pageObject={pageObject}
@@ -46,7 +47,6 @@ class EstateDataContainer extends React.Component {
 
 const getSortList = (dataList, currentSortRule) => {
   let sortFunc
-  console.log(currentSortRule)
   switch (currentSortRule) {
     case sortRule.AVA_PROPERTYCOUNT_ASC:
       sortFunc = (a, b) => a.avaPropertyCount - b.avaPropertyCount
