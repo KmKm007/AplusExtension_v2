@@ -11,7 +11,7 @@ export const receiveRegionList = regionList => ({
   regionList
 })
 
-export const fetchRegionList = dispatch => {
+export const fetchRegionList = () => dispatch => {
   dispatch(requestRegionList())
   fetchServerRegionList(dataList => {
     dispatch(receiveRegionList(dataList))

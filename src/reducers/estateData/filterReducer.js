@@ -29,6 +29,34 @@ const removeRegionId = (state, action) => {
   }
 }
 
+const addRegionIds = (state, action) => {
+  const regionIds = action.regionIds
+  const currentRegionIdList = state.regionIdList
+  const nextRegionIdList = [...currentRegionIdList]
+  regionIds.map(id => {
+    let isExist = currentRegionIdList.includes(id)
+    if (!isExist)
+        nextRegionIdList.push(id)
+  })
+  return {
+    ...state,
+    regionIdList: nextRegionIdList
+  }
+}
+
+const removeRegionIds = (state, action) => {
+  const regionIds = action.regionIds
+  const currentRegionIdList = state.regionIdList
+  const nextRegionIdList = currentRegionIdList.filter(id => {
+    let isExist = regionIds.includes(id)
+    return isExist ? false : true
+  })
+  return {
+    ...state,
+    regionIdList: nextRegionIdList
+  }
+}
+
 const addDistrictId = (state, action) => {
   const districtId = action.districtId
   const districtIdList = state.districtIdList
@@ -53,6 +81,13 @@ const removeDistrictId = (state, action) => {
   }
 }
 
+const clearRegionIds = state => {
+  return {
+    ...state,
+    regionIdList: initialState.regionIdList
+  }
+}
+
 const filter = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_DISTRICT_ID:
@@ -63,6 +98,12 @@ const filter = (state = initialState, action) => {
       return addRegionId(state, action)
     case types.REMOVE_REGION_ID:
       return removeRegionId(state, action)
+    case types.CLEAR_REGION_IDS:
+      return clearRegionIds(state)
+    case types.ADD_REGION_IDS:
+      return addRegionIds(state, action)
+    case types.REMOVE_REGION_IDS:
+      return removeRegionIds(state, action)
     default:
       return state
   }

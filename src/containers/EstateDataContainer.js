@@ -28,16 +28,18 @@ class EstateDataContainer extends React.Component {
 
   componentDidMount() {
     this.props.fetchData(null)
+    this.props.fetchRegionList()
   }
 
   render() {
-    const { dataList, pageObject, sortRule, filter, isDataFetched, isShowSearchBar } = this.props
+    const { dataList, pageObject, sortRule, filter, regionList, isDataFetched, isShowSearchBar } = this.props
     const { handleRealPropertyCountClick, handlePropertyCountClick,
       handleAvaPropertyCountClick, handleKeyPropertyCountClick, handleBMRecomPropertyCountClick,
       handleDMRecomPropertyCountClick, handleTrustRecPropertyCountClick,
-      handlePageClick, handleDataExport, handleSearchBarClick } = this.props
+      handlePageClick, handleDataExport, handleSearchBarClick,
+      handleDistrictChipCilck, handleRegionChipClick, handleClearRegionIds,
+      fetchData } = this.props
     const { regionIdList, districtIdList } = filter
-    console.log(handleDataExport)
     return isDataFetched ? (
       <div>
         <EstateDataToolbar
@@ -62,15 +64,15 @@ class EstateDataContainer extends React.Component {
         />
         <EstateSearchBarView
           open={isShowSearchBar}
-          handleSearchBarClick ={this.handleSearchBarClick}
+          handleSearchBarClick ={handleSearchBarClick}
           districtList={districtList}
-          regionList={[]}
+          regionList={regionList}
           selectedDistrictIdList={districtIdList}
           selectedRegionIdList={regionIdList}
-          handleDistrictChipCilck={this.handleDistrictChipCilck}
-          handleRegionChipClick={this.handleRegionChipClick}
-          handleSearchSubmit={this.handleSearchSubmit}
-          handleRegionClearBtnClick={this.handleRegionClear}
+          handleDistrictChipCilck={districtId => handleDistrictChipCilck(districtId, filter.districtIdList, regionList)}
+          handleRegionChipClick={regionId => handleRegionChipClick(regionId, filter.regionIdList)}
+          handleSearchSubmit={() => fetchData(filter)}
+          handleRegionClearBtnClick={handleClearRegionIds}
         />
       </div>
     ) : <div>loading data...</div>
@@ -128,17 +130,26 @@ const getSortList = (dataList, currentSortRule) => {
 
 const mapStateToProps = state => {
   const currentState = state.estateData
-  const { pageObject, dataList, sortRule, filter } = currentState
+  const { pageObject, dataList, sortRule, filter, regionList } = currentState
   const { isDataFetched,isShowSearchBar }= currentState.dataStatus
   const { currentPage, pageSize } = pageObject
   const compressedList = getSortList(dataList, sortRule).slice((currentPage -1) * pageSize, currentPage * pageSize)
+  const selectedDistrictIdList = filter.districtIdList
+  const childRegionList = regionList.filter(region => {
+    if (selectedDistrictIdList.includes(region.district.id)) {
+      return true
+    } else {
+      return false
+    }
+  })
   return ({
     dataList: compressedList,
     pageObject,
     isDataFetched,
     isShowSearchBar,
     sortRule,
-    filter
+    filter,
+    regionList: childRegionList
   })
 }
 
@@ -193,19 +204,31 @@ const mapDispatchToProps = dispatch => ({
   },
   handlePageClick: page => dispatch(types.fetchSelectedPage(page)),
   handleDataExport: filter => dispatch(types.fetchExportDataCode(filter)),
-  handleDistrictChipCilck: (districtId, districtIdList) => {
-    if (districtIdList.includes(districtId))
+  handleDistrictChipCilck: (districtId, districtIdList, regionList) => {
+    const childRegionIdList = regionList.reduce((list, region) => {
+      if (region.district.id === districtId) {
+        list.push(region.id)
+      }
+      return list
+    },[])
+    if (districtIdList.includes(districtId)) {
       dispatch(types.removeDistrictId(districtId))
-    else
+      dispatch(types.removeRegionIds(childRegionIdList))
+    } else {
       dispatch(types.addDistrictId(districtId))
+      dispatch(types.addRegionIds(childRegionIdList))
+    }
   },
   handleRegionChipClick: (regionId, regionIdList) => {
-    if (regionIdList.includes(regionId))
+    if (regionIdList.includes(regionId)) {
       dispatch(types.removeRegionId(regionId))
-    else
+    } else {
       dispatch(types.addRegionId(regionId))
+    }
   },
-  fetchData: filter => dispatch(types.fetchData(filter))
+  fetchData: filter => dispatch(types.fetchData(filter)),
+  fetchRegionList: () => dispatch(types.fetchRegionList()),
+  handleClearRegionIds: () => dispatch(types.clearRegionIds())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EstateDataContainer)

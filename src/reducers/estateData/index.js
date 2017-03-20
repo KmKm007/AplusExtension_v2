@@ -4,13 +4,15 @@ import pageObject from './pageObjectReducer'
 import sortRule from './sortRuleReducer'
 import dataStatus from './dataStatusReducer'
 import filter from './filterReducer'
+import regionList from './regionListReducer'
 
 const estateData = combineReducers({
   dataList,
   pageObject,
   sortRule,
   dataStatus,
-  filter
+  filter,
+  regionList
 })
 
 export default estateData
