@@ -11,3 +11,7 @@ export const showSearchBar = () => ({
 export const hideSearchBar = () => ({
   type: types.HIDE_SEARCH_BAR
 })
+
+export const finishRegionListFetch = () => ({
+  type: types.FINISH_REGION_LIST_FETCH
+})
