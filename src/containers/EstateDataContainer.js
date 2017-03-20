@@ -4,6 +4,7 @@ import EstateData from '../components/estateData/EstateData'
 import PageObjectContainer from './PageObjectContainer'
 import types from '../actions/EstateData'
 import sortRule from '../constant/sortRule'
+import EstateDataToolbar from '../components/EstateData/EstateDataToolbar'
 
 class EstateDataContainer extends React.Component {
   static propTypes = {
@@ -18,13 +19,25 @@ class EstateDataContainer extends React.Component {
     isDataFetched: PropTypes.bool.isRequired
   }
 
+  static defaultProps = {
+    tableTitle: '楼盘信息统计表'
+  }
+
   render() {
-    const { dataList, handleRealPropertyCountClick, handlePropertyCountClick,
+    const { dataList, pageObject, sortRule, filter } = this.props
+    const { handleRealPropertyCountClick, handlePropertyCountClick,
       handleAvaPropertyCountClick, handleKeyPropertyCountClick, handleBMRecomPropertyCountClick,
       handleDMRecomPropertyCountClick, handleTrustRecPropertyCountClick,
-      isDataFetched, pageObject, handlePageClick, sortRule } = this.props
+      isDataFetched, handlePageClick, handleDataExport } = this.props
+    // const { regionIdList, districtIdList } = filter
+    console.log(handleDataExport)
     return isDataFetched ? (
       <div>
+        <EstateDataToolbar
+          title={this.props.tableTitle}
+          handleDataExport={() => handleDataExport(filter)}
+          handleSearchBarClick={() => {}}
+        />
         <EstateData
           dataList={dataList}
           sortRule={sortRule}
@@ -96,7 +109,7 @@ const getSortList = (dataList, currentSortRule) => {
 
 const mapStateToProps = state => {
   const currentState = state.estateData
-  const { pageObject, dataList, sortRule } = currentState
+  const { pageObject, dataList, sortRule, filter } = currentState
   const isDataFetched = currentState.dataStatus.isDataFetched
   const { currentPage, pageSize } = pageObject
   const compressedList = getSortList(dataList, sortRule).slice((currentPage -1) * pageSize, currentPage * pageSize)
@@ -104,7 +117,8 @@ const mapStateToProps = state => {
     dataList: compressedList,
     pageObject,
     isDataFetched,
-    sortRule
+    sortRule,
+    filter
   })
 }
 
@@ -151,7 +165,8 @@ const mapDispatchToProps = dispatch => ({
     else
       dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
   },
-  handlePageClick: page => dispatch(types.fetchSelectedPage(page))
+  handlePageClick: page => dispatch(types.fetchSelectedPage(page)),
+  handleDataExport: filter => dispatch(types.fetchExportDataCode(filter))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EstateDataContainer)

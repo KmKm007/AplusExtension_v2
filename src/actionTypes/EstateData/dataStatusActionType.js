@@ -1,1 +1,5 @@
 export const FINISH_DATA_FETCH = 'FINISH_DATA_FETCH'
+
+export const SHOW_SEARCH_BAR = 'SHOW_SEARCH_BAR'
+
+export const HIDE_SEARCH_BAR = 'HIDE_SEARCH_BAR'
