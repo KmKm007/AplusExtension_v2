@@ -1,6 +1,6 @@
-import SOUR_RULE from '../../actionTypes/EstateData'
+import types from '../../actionTypes/EstateData'
 
 export const changeOrderRule = orderRule => ({
-  type: SOUR_RULE,
+  type: types.CHANGE_ORDER_RULE,
   orderRule
 })

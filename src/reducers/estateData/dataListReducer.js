@@ -1,4 +1,4 @@
-import * as types from '../../actionTypes/EstateData'
+import types from '../../actionTypes/EstateData'
 
 const initialState = []
 

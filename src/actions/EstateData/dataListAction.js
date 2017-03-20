@@ -1,4 +1,6 @@
-import * as types from '../../actionTypes/EstateData'
+import types from '../../actionTypes/EstateData'
+import { fetchServerData } from '../../api/estateData'
+import { finishDataFetch } from './dataStatusAction'
 
 export const requestData = () => ({
   type: types.REQUEST_DATA
@@ -9,8 +11,11 @@ export const receiveData = (dataList) => ({
   dataList
 })
 
-export const fetchData = () => dispatch => {
+export const fetchData = filter => dispatch => {
   dispatch(requestData())
-  console.log(123)
-  dispatch(receiveData([]))
+  fetchServerData(filter, json => {
+    const dataList = json.dataList
+    dispatch(receiveData(dataList))
+    dispatch(finishDataFetch())
+  })
 }

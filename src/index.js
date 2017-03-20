@@ -6,16 +6,16 @@ import thunk from 'redux-thunk'
 import reducers from './reducers'
 import createLogger from 'redux-logger'
 import actions from './actions/EstateData'
-// import AppRouter from './router/MainRouter'
+import AppRouter from './router/MainRouter'
 
 const middleWare = [ thunk, createLogger()]
 
-console.log(actions)
-
 const store = createStore(reducers, applyMiddleware(...middleWare))
+
+store.dispatch(actions.fetchData(null))
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>123</div>
+    <AppRouter />
   </Provider>, document.getElementById('app')
 )

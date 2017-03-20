@@ -1,21 +1,22 @@
 import React from 'react'
-import EstateDataCont from '../container/EstateDataCont'
+import EstateDataContainer from '../../containers/EstateDataContainer'
 
 class EstateDataPage extends React.Component {
+  static defaultProps = {
+    title: '楼盘信息统计'
+  }
+
   componentDidMount() {
     document.title = this.props.title
   }
+  
   render () {
     return (
       <div className="cont-estate-data">
-        <EstateDataCont />
+        <EstateDataContainer />
       </div>
     )
   }
-}
-
-EstateDataPage.defaultProps = {
-  title: '楼盘信息统计'
 }
 
 export default EstateDataPage
