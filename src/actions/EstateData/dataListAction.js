@@ -1,6 +1,7 @@
 import types from '../../actionTypes/EstateData'
 import { fetchServerData } from '../../api/estateData'
 import { finishDataFetch } from './dataStatusAction'
+import { updatePageObject } from './pageObjectAction'
 
 export const requestData = () => ({
   type: types.REQUEST_DATA
@@ -16,6 +17,7 @@ export const fetchData = filter => dispatch => {
   fetchServerData(filter, json => {
     const dataList = json.dataList
     dispatch(receiveData(dataList))
+    dispatch(updatePageObject(dataList))
     dispatch(finishDataFetch())
   })
 }
