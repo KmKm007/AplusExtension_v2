@@ -5,6 +5,8 @@ import PageObjectContainer from './PageObjectContainer'
 import types from '../actions/EstateData'
 import sortRule from '../constant/sortRule'
 import EstateDataToolbar from '../components/EstateData/EstateDataToolbar'
+import EstateSearchBarView from '../components/EstateData/EstateSearchBarView'
+import districtList from '../constant/districtList'
 
 class EstateDataContainer extends React.Component {
   static propTypes = {
@@ -16,27 +18,32 @@ class EstateDataContainer extends React.Component {
     handleBMRecomPropertyCountClick: PropTypes.func.isRequired,
     handleDMRecomPropertyCountClick: PropTypes.func.isRequired,
     sortRule: PropTypes.string.isRequired,
-    isDataFetched: PropTypes.bool.isRequired
+    isDataFetched: PropTypes.bool.isRequired,
+    isShowSearchBar: PropTypes.bool.isRequired
   }
 
   static defaultProps = {
     tableTitle: '楼盘信息统计表'
   }
 
+  componentDidMount() {
+    this.props.fetchData(null)
+  }
+
   render() {
-    const { dataList, pageObject, sortRule, filter } = this.props
+    const { dataList, pageObject, sortRule, filter, isDataFetched, isShowSearchBar } = this.props
     const { handleRealPropertyCountClick, handlePropertyCountClick,
       handleAvaPropertyCountClick, handleKeyPropertyCountClick, handleBMRecomPropertyCountClick,
       handleDMRecomPropertyCountClick, handleTrustRecPropertyCountClick,
-      isDataFetched, handlePageClick, handleDataExport } = this.props
-    // const { regionIdList, districtIdList } = filter
+      handlePageClick, handleDataExport, handleSearchBarClick } = this.props
+    const { regionIdList, districtIdList } = filter
     console.log(handleDataExport)
     return isDataFetched ? (
       <div>
         <EstateDataToolbar
           title={this.props.tableTitle}
           handleDataExport={() => handleDataExport(filter)}
-          handleSearchBarClick={() => {}}
+          handleSearchBarClick={() => handleSearchBarClick(true)}
         />
         <EstateData
           dataList={dataList}
@@ -49,10 +56,22 @@ class EstateDataContainer extends React.Component {
           handleDMRecomPropertyCountClick={handleDMRecomPropertyCountClick}
           handleTrustRecPropertyCountClick={handleTrustRecPropertyCountClick}
         />
-      <PageObjectContainer
-        pageObject={pageObject}
-        handlePageClick={handlePageClick}
-      />
+        <PageObjectContainer
+          pageObject={pageObject}
+          handlePageClick={handlePageClick}
+        />
+        <EstateSearchBarView
+          open={isShowSearchBar}
+          handleSearchBarClick ={this.handleSearchBarClick}
+          districtList={districtList}
+          regionList={[]}
+          selectedDistrictIdList={districtIdList}
+          selectedRegionIdList={regionIdList}
+          handleDistrictChipCilck={this.handleDistrictChipCilck}
+          handleRegionChipClick={this.handleRegionChipClick}
+          handleSearchSubmit={this.handleSearchSubmit}
+          handleRegionClearBtnClick={this.handleRegionClear}
+        />
       </div>
     ) : <div>loading data...</div>
   }
@@ -110,13 +129,14 @@ const getSortList = (dataList, currentSortRule) => {
 const mapStateToProps = state => {
   const currentState = state.estateData
   const { pageObject, dataList, sortRule, filter } = currentState
-  const isDataFetched = currentState.dataStatus.isDataFetched
+  const { isDataFetched,isShowSearchBar }= currentState.dataStatus
   const { currentPage, pageSize } = pageObject
   const compressedList = getSortList(dataList, sortRule).slice((currentPage -1) * pageSize, currentPage * pageSize)
   return ({
     dataList: compressedList,
     pageObject,
     isDataFetched,
+    isShowSearchBar,
     sortRule,
     filter
   })
@@ -165,8 +185,27 @@ const mapDispatchToProps = dispatch => ({
     else
       dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
   },
+  handleSearchBarClick: status => {
+    if (status)
+      dispatch(types.showSearchBar())
+    else
+      dispatch(types.hideSearchBar())
+  },
   handlePageClick: page => dispatch(types.fetchSelectedPage(page)),
-  handleDataExport: filter => dispatch(types.fetchExportDataCode(filter))
+  handleDataExport: filter => dispatch(types.fetchExportDataCode(filter)),
+  handleDistrictChipCilck: (districtId, districtIdList) => {
+    if (districtIdList.includes(districtId))
+      dispatch(types.removeDistrictId(districtId))
+    else
+      dispatch(types.addDistrictId(districtId))
+  },
+  handleRegionChipClick: (regionId, regionIdList) => {
+    if (regionIdList.includes(regionId))
+      dispatch(types.removeRegionId(regionId))
+    else
+      dispatch(types.addRegionId(regionId))
+  },
+  fetchData: filter => dispatch(types.fetchData(filter))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EstateDataContainer)
