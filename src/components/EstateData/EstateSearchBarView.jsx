@@ -35,7 +35,7 @@ class EstateSearchBarView extends React.Component {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
 
-  handleDistrictSwitch = (isShowDistrictBar) => {
+  handleDistrictSwitch = isShowDistrictBar => {
     this.setState({
       isShowDistrictBar
     })
@@ -49,6 +49,8 @@ class EstateSearchBarView extends React.Component {
 
   handleSearchSubmitBtnClick= () => {
     this.props.handleSearchSubmit()
+    this.handleDistrictSwitch(false)
+    this.handleRegionSwitch(false)
     this.props.handleSearchBarClick(false)
   }
 

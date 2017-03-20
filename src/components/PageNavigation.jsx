@@ -46,6 +46,10 @@ class PageNavigation extends React.Component {
           pageArray.push(currentPage + i)
         }
       }
+    } else {
+      for (let j = 1;j <= maxPage; j++) {
+        pageArray.push(j)
+      }
     }
     const { handlePageClick, handleNextPageClick, handlePrePageClick,
       handleLastPageClick, handleFirstPageClick } = this.props

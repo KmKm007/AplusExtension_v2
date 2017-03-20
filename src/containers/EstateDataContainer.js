@@ -45,7 +45,7 @@ class EstateDataContainer extends React.Component {
         <EstateDataToolbar
           title={this.props.tableTitle}
           handleDataExport={() => handleDataExport(filter)}
-          handleSearchBarClick={() => handleSearchBarClick(true)}
+          handleSearchBarClick={handleSearchBarClick}
         />
         <EstateData
           dataList={dataList}
@@ -197,6 +197,7 @@ const mapDispatchToProps = dispatch => ({
       dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
   },
   handleSearchBarClick: status => {
+    console.log(status)
     if (status)
       dispatch(types.showSearchBar())
     else
