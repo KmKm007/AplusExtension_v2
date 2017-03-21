@@ -1,4 +1,5 @@
 import { url, exportUrl, regionListUrl, downloadUrl } from '../appConfig/urls'
+import 'whatwg-fetch'
 
 export const fetchServerData = (filter, callBack) => {
   fetch(url, {

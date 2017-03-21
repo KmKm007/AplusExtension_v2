@@ -198,7 +198,6 @@ const mapDispatchToProps = dispatch => ({
       dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
   },
   handleSearchBarClick: status => {
-    console.log(status)
     if (status)
       dispatch(types.showSearchBar())
     else
