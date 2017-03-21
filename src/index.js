@@ -8,7 +8,10 @@ import createLogger from 'redux-logger'
 import AppRouter from './router/MainRouter'
 import './styles/App.css'
 
-const middleWare = [ thunk, createLogger() ]
+const middleWare = [ thunk ]
+if (process.env.NODE_ENV !== 'production') {
+  middleWare.push(createLogger())
+}
 
 const store = createStore(reducers, applyMiddleware(...middleWare))
 

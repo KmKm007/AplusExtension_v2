@@ -7,6 +7,7 @@ import sortRule from '../constant/sortRule'
 import EstateDataToolbar from '../components/EstateData/EstateDataToolbar'
 import EstateSearchBarView from '../components/EstateData/EstateSearchBarView'
 import districtList from '../constant/districtList'
+import Loading from '../components/Loading'
 
 class EstateDataContainer extends React.Component {
   static propTypes = {
@@ -75,7 +76,7 @@ class EstateDataContainer extends React.Component {
           handleRegionClearBtnClick={handleClearRegionIds}
         />
       </div>
-    ) : <div>loading data...</div>
+    ) : <Loading />
   }
 }
 
