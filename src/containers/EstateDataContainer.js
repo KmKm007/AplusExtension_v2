@@ -137,7 +137,8 @@ const mapStateToProps = state => {
   const compressedList = getSortList(dataList, sortRule).slice((currentPage -1) * pageSize, currentPage * pageSize)
   const selectedDistrictIdList = filter.districtIdList
   const childRegionList = regionList.filter(region => {
-    if (selectedDistrictIdList.includes(region.district.id)) {
+    const isInclude = selectedDistrictIdList.some(id => id ===region.district.id )
+    if (isInclude) {
       return true
     } else {
       return false
@@ -212,7 +213,8 @@ const mapDispatchToProps = dispatch => ({
       }
       return list
     },[])
-    if (districtIdList.includes(districtId)) {
+    const isInDistrictIdList = districtIdList.some(id => id === districtId)
+    if (isInDistrictIdList) {
       dispatch(types.removeDistrictId(districtId))
       dispatch(types.removeRegionIds(childRegionIdList))
     } else {
@@ -221,7 +223,8 @@ const mapDispatchToProps = dispatch => ({
     }
   },
   handleRegionChipClick: (regionId, regionIdList) => {
-    if (regionIdList.includes(regionId)) {
+    const isInRegionIdList = regionIdList.some(id => id === regionId)
+    if (isInRegionIdList) {
       dispatch(types.removeRegionId(regionId))
     } else {
       dispatch(types.addRegionId(regionId))

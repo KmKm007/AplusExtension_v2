@@ -8,7 +8,7 @@ const initialState = {
 const addRegionId = (state, action) => {
   const regionId = action.regionId
   const regionIdList = state.regionIdList
-  const isExist = regionIdList.includes(regionId)
+  const isExist = regionIdList.some(id => id === regionId)
   if (isExist)
     return state
   return {
@@ -34,7 +34,7 @@ const addRegionIds = (state, action) => {
   const currentRegionIdList = state.regionIdList
   const nextRegionIdList = [...currentRegionIdList]
   regionIds.map(id => {
-    let isExist = currentRegionIdList.includes(id)
+    let isExist = currentRegionIdList.some(rId => rId === id)
     if (!isExist)
         nextRegionIdList.push(id)
   })
@@ -48,7 +48,7 @@ const removeRegionIds = (state, action) => {
   const regionIds = action.regionIds
   const currentRegionIdList = state.regionIdList
   const nextRegionIdList = currentRegionIdList.filter(id => {
-    let isExist = regionIds.includes(id)
+    let isExist = regionIds.some(rId => rId === id)
     return isExist ? false : true
   })
   return {
@@ -60,7 +60,7 @@ const removeRegionIds = (state, action) => {
 const addDistrictId = (state, action) => {
   const districtId = action.districtId
   const districtIdList = state.districtIdList
-  const isExist = districtIdList.includes(districtId)
+  const isExist = districtIdList.some(dId => dId === districtId)
   if (isExist)
     return state
   return {
