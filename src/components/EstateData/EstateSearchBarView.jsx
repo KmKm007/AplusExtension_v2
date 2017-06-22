@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import Chip from 'material-ui/Chip'
 import Toggle from 'material-ui/Toggle'
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MaterialUIComponent from '@template/MaterialUIComponent'
 
 const styles = {
   chip: {
@@ -23,16 +23,13 @@ const styles = {
   }
 }
 
-class EstateSearchBarView extends React.Component {
+class EstateSearchBarView extends MaterialUIComponent {
   constructor (props) {
     super(props)
     this.state = {
       isShowDistrictBar: false,
       isShowRegionBar: false
     }
-  }
-  getChildContext () {
-    return { muiTheme: getMuiTheme(baseTheme) }
   }
 
   handleDistrictSwitch = isShowDistrictBar => {
@@ -170,10 +167,6 @@ class EstateSearchBarView extends React.Component {
       </div>
     )
   }
-}
-
-EstateSearchBarView.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired
 }
 
 EstateSearchBarView.PropTypes = {

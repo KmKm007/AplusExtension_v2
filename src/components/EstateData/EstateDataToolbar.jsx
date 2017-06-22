@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
@@ -9,8 +7,9 @@ import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import Download from 'material-ui/svg-icons/file/file-download'
 import Search from 'material-ui/svg-icons/action/search'
+import MaterialUIComponent from '@template/MaterialUIComponent'
 
-class Logged extends React.Component {
+class Logged extends MaterialUIComponent {
   render () {
     return (
       <IconMenu
@@ -32,13 +31,7 @@ class Logged extends React.Component {
 
 Logged.muiName = 'IconMenu'
 
-class EstateDataToolbar extends React.Component {
-  getChildContext () {
-    return {
-      muiTheme: getMuiTheme(baseTheme)
-    }
-  }
-
+class EstateDataToolbar extends MaterialUIComponent {
   render () {
     return (
       <AppBar
@@ -53,10 +46,6 @@ class EstateDataToolbar extends React.Component {
       />
     )
   }
-}
-
-EstateDataToolbar.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired
 }
 
 EstateDataToolbar.propTypes = {

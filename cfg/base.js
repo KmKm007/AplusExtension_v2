@@ -15,9 +15,10 @@ module.exports = {
   debug: true,
   devtool: 'eval',
   output: {
-    path: path.join(__dirname, '/../dist/assets'),
-    filename: 'app.js',
-    publicPath: defaultSettings.publicPath
+    path: path.join(__dirname, '/../dist'),
+    filename: 'js/[name].[hash:8].js',
+    publicPath: defaultSettings.publicPath,
+    chunkFilename: 'js/[name].[chunkhash:5].min.js'
   },
   devServer: {
     contentBase: './src/',
@@ -25,7 +26,8 @@ module.exports = {
     hot: true,
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
-    noInfo: false
+    noInfo: false,
+    disableHostCheck: true
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],

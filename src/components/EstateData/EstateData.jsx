@@ -1,11 +1,8 @@
-import React, { PropTypes } from 'react'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table'
 import cs from 'classnames'
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-
-injectTapEventPlugin()
+import MaterialUIComponent from '@template/MaterialUIComponent'
 
 const style = {
   heanderTitle: {
@@ -43,10 +40,7 @@ const style = {
   }
 }
 
-class EstateData extends React.Component {
-  getChildContext () {
-    return { muiTheme: getMuiTheme(baseTheme) }
-  }
+class EstateData extends MaterialUIComponent {
   render () {
     let activeHeaderClass = cs('table-header', 'active-table-header')
     let headerClass = cs('table-header')
@@ -140,10 +134,6 @@ EstateData.propTypes = {
   handleRealPropertyCountClick: PropTypes.func.isRequired,
   handleKeyPropertyCountClick: PropTypes.func.isRequired,
   handleTrustRecPropertyCountClick: PropTypes.func.isRequired
-}
-
-EstateData.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired
 }
 
 export default EstateData
