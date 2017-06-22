@@ -1,5 +1,5 @@
-import types from '../../actionTypes/EstateData'
-import { fetchServerRegionList } from '../../api/estateData'
+import types from '@actionTypes/EstateData'
+import { fetchServerRegionList } from '@service/api/estateData'
 
 
 export const requestRegionList = () => ({

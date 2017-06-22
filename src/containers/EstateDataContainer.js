@@ -1,13 +1,14 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import EstateData from '../components/estateData/EstateData'
+import EstateData from '@components/estateData/EstateData'
 import PageObjectContainer from './PageObjectContainer'
-import types from '../actions/EstateData'
-import sortRule from '../constant/sortRule'
-import EstateDataToolbar from '../components/EstateData/EstateDataToolbar'
-import EstateSearchBarView from '../components/EstateData/EstateSearchBarView'
-import districtList from '../constant/districtList'
-import Loading from '../components/Loading'
+import actions from '@actions/EstateData'
+import sortRule from '@service/constant/sortRule'
+import EstateDataToolbar from '@components/EstateData/EstateDataToolbar'
+import EstateSearchBarView from '@components/EstateData/EstateSearchBarView'
+import districtList from '@service/constant/districtList'
+import Loading from '@components/Loading'
 
 class EstateDataContainer extends React.Component {
   static propTypes = {
@@ -158,54 +159,54 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   handleRealPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.REALSUR_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.REALSUR_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.REALSUR_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.REALSUR_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.REALSUR_PROPERTYCOUNT_DESC))
   },
   handlePropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.PROPERTYCOUNT_DESC))
   },
   handleAvaPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.AVA_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.AVA_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.AVA_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.AVA_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.AVA_PROPERTYCOUNT_DESC))
   },
   handleKeyPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.KEY_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.KEY_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.KEY_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.KEY_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.KEY_PROPERTYCOUNT_DESC))
   },
   handleBMRecomPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.BMRECOM_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_DESC))
   },
   handleDMRecomPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.DMRECOM_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_DESC))
   },
   handleTrustRecPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.TRUSTREC_PROPERTYCOUNT_DESC)
-      dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_ASC))
+      dispatch(actions.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_ASC))
     else
-      dispatch(types.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
   },
   handleSearchBarClick: status => {
     if (status)
-      dispatch(types.showSearchBar())
+      dispatch(actions.showSearchBar())
     else
-      dispatch(types.hideSearchBar())
+      dispatch(actions.hideSearchBar())
   },
-  handlePageClick: page => dispatch(types.fetchSelectedPage(page)),
-  handleDataExport: filter => dispatch(types.fetchExportDataCode(filter)),
+  handlePageClick: page => dispatch(actions.fetchSelectedPage(page)),
+  handleDataExport: filter => dispatch(actions.fetchExportDataCode(filter)),
   handleDistrictChipCilck: (districtId, districtIdList, regionList) => {
     const childRegionIdList = regionList.reduce((list, region) => {
       if (region.district.id === districtId) {
@@ -215,24 +216,24 @@ const mapDispatchToProps = dispatch => ({
     },[])
     const isInDistrictIdList = districtIdList.some(id => id === districtId)
     if (isInDistrictIdList) {
-      dispatch(types.removeDistrictId(districtId))
-      dispatch(types.removeRegionIds(childRegionIdList))
+      dispatch(actions.removeDistrictId(districtId))
+      dispatch(actions.removeRegionIds(childRegionIdList))
     } else {
-      dispatch(types.addDistrictId(districtId))
-      dispatch(types.addRegionIds(childRegionIdList))
+      dispatch(actions.addDistrictId(districtId))
+      dispatch(actions.addRegionIds(childRegionIdList))
     }
   },
   handleRegionChipClick: (regionId, regionIdList) => {
     const isInRegionIdList = regionIdList.some(id => id === regionId)
     if (isInRegionIdList) {
-      dispatch(types.removeRegionId(regionId))
+      dispatch(actions.removeRegionId(regionId))
     } else {
-      dispatch(types.addRegionId(regionId))
+      dispatch(actions.addRegionId(regionId))
     }
   },
-  fetchData: filter => dispatch(types.fetchData(filter)),
-  fetchRegionList: () => dispatch(types.fetchRegionList()),
-  handleClearRegionIds: () => dispatch(types.clearRegionIds())
+  fetchData: filter => dispatch(actions.fetchData(filter)),
+  fetchRegionList: () => dispatch(actions.fetchRegionList()),
+  handleClearRegionIds: () => dispatch(actions.clearRegionIds())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EstateDataContainer)

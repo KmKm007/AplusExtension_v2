@@ -30,13 +30,15 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      actions: `${defaultSettings.srcPath}/actions/`,
-      components: `${defaultSettings.srcPath}/components/`,
-      sources: `${defaultSettings.srcPath}/sources/`,
-      stores: `${defaultSettings.srcPath}/stores/`,
-      styles: `${defaultSettings.srcPath}/styles/`,
-      config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
-      'react/lib/ReactMount': 'react-dom/lib/ReactMount'
+      '@components': `${defaultSettings.srcPath}/components/`,
+      '@styles': `${defaultSettings.srcPath}/styles/`,
+      '@config': `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
+      'react/lib/ReactMount': 'react-dom/lib/ReactMount',
+      '@actionTypes': `${defaultSettings.srcPath}/redux/actionTypes/`,
+      '@actions': `${defaultSettings.srcPath}/redux/actions/`,
+      '@reducers': `${defaultSettings.srcPath}/redux/reducers/`,
+      '@store': `${defaultSettings.srcPath}/redux/store/`,
+      '@service': `${defaultSettings.srcPath}/service/`
     }
   },
   module: {}

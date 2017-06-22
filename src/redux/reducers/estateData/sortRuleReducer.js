@@ -1,5 +1,5 @@
-import types from '../../actionTypes/EstateData'
-import SORT_RULE from '../../constant/sortRule'
+import types from '@actionTypes/EstateData'
+import SORT_RULE from '@service/constant/sortRule'
 
 const sortRule = (state = SORT_RULE.AVA_PROPERTYCOUNT_DESC, action) => {
   switch (action.type) {
