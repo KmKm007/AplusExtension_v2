@@ -9,15 +9,11 @@ const style = {
 }
 
 class PageNavigation extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  getChildContext() {
+  getChildContext () {
     return {muiTheme: getMuiTheme(baseTheme)}
   }
 
-  render() {
+  render () {
     let pageArray = []
     let currentPage = this.props.currentPage
     let pageCount = 5
@@ -47,7 +43,7 @@ class PageNavigation extends React.Component {
         }
       }
     } else {
-      for (let j = 1;j <= maxPage; j++) {
+      for (let j = 1; j <= maxPage; j++) {
         pageArray.push(j)
       }
     }
@@ -63,15 +59,16 @@ class PageNavigation extends React.Component {
         <RaisedButton label={'上一页'} style={style}
           onClick={handlePrePageClick}
         />
-        {pageArray.map((page) => {
-          let isActive = currentPage === page
-            ? true
-            : false
-          return (
-            <RaisedButton key={page} label={page} primary={isActive} style={style}
-              onClick={() => {handlePageClick(page)}
-            }/>
-        )})}
+        {
+          pageArray.map((page) => {
+            let isActive = currentPage === page
+            return (
+              <RaisedButton key={page} label={page} primary={isActive} style={style}
+                onClick={() => handlePageClick(page)}
+              />
+            )
+          })
+        }
         <RaisedButton label={'下一页'} style={style}
           onClick={handleNextPageClick}
         />
@@ -80,21 +77,21 @@ class PageNavigation extends React.Component {
         />
       </div>
     )
-    }
+  }
   }
 
-  PageNavigation.propTypes = {
-    currentPage: PropTypes.number.isRequired,
-    maxPage: PropTypes.number.isRequired,
-    handlePageClick: PropTypes.func.isRequired,
-    handleNextPageClick: PropTypes.func.isRequired,
-    handlePrePageClick: PropTypes.func.isRequired,
-    handleLastPageClick: PropTypes.func.isRequired,
-    handleFirstPageClick: PropTypes.func.isRequired
-  }
+PageNavigation.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  maxPage: PropTypes.number.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+  handleNextPageClick: PropTypes.func.isRequired,
+  handlePrePageClick: PropTypes.func.isRequired,
+  handleLastPageClick: PropTypes.func.isRequired,
+  handleFirstPageClick: PropTypes.func.isRequired
+}
 
-  PageNavigation.childContextTypes = {
-    muiTheme: PropTypes.object.isRequired
-  }
+PageNavigation.childContextTypes = {
+  muiTheme: PropTypes.object.isRequired
+}
 
-  export default PageNavigation
+export default PageNavigation

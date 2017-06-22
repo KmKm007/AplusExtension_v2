@@ -5,8 +5,6 @@ import AppRouter from './router/MainRouter'
 import store from '@store'
 import './styles/App.css'
 
-
-
 ReactDOM.render(
   <Provider store={store}>
     <AppRouter />

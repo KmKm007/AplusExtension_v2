@@ -44,10 +44,7 @@ const style = {
 }
 
 class EstateData extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  getChildContext() {
+  getChildContext () {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
   render () {
@@ -136,7 +133,7 @@ class EstateData extends React.Component {
   }
 }
 
-EstateData.propTypes= {
+EstateData.propTypes = {
   dataList: PropTypes.array.isRequired,
   handlePropertyCountClick: PropTypes.func.isRequired,
   handleAvaPropertyCountClick: PropTypes.func.isRequired,

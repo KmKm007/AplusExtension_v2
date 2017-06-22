@@ -12,7 +12,7 @@ const fetchSelectedPage = (state, action) => {
   const { currentPage, maxPage } = state
   const selectedPage = action.selectedPage
   if (currentPage === selectedPage || selectedPage > maxPage || selectedPage < 1) {
-      return state
+    return state
   }
   return {
     ...state,
@@ -24,7 +24,7 @@ const updatePageObject = (state, action) => {
   const dataList = action.dataList
   const pageSize = state.pageSize
   const length = dataList.length
-  const maxPage = length % pageSize === 0 ? length / pageSize : ( parseInt( length /pageSize ) +1 )
+  const maxPage = length % pageSize === 0 ? length / pageSize : (parseInt(length / pageSize) + 1)
   return {
     ...state,
     currentPage: 1,

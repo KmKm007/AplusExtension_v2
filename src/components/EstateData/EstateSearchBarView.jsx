@@ -24,14 +24,14 @@ const styles = {
 }
 
 class EstateSearchBarView extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       isShowDistrictBar: false,
       isShowRegionBar: false
     }
   }
-  getChildContext() {
+  getChildContext () {
     return { muiTheme: getMuiTheme(baseTheme) }
   }
 
@@ -60,7 +60,7 @@ class EstateSearchBarView extends React.Component {
     this.props.handleSearchBarClick(false)
   }
 
-  isSelectedDistrictEmpty() {
+  isSelectedDistrictEmpty () {
     if (!this.props.selectedDistrictIdList || this.props.selectedDistrictIdList.length === 0) {
       return true
     } else {

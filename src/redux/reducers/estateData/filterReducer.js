@@ -9,8 +9,9 @@ const addRegionId = (state, action) => {
   const regionId = action.regionId
   const regionIdList = state.regionIdList
   const isExist = regionIdList.some(id => id === regionId)
-  if (isExist)
+  if (isExist) {
     return state
+  }
   return {
     ...state,
     regionIdList: [ ...regionIdList, regionId ]
@@ -21,11 +22,12 @@ const removeRegionId = (state, action) => {
   const regionId = action.regionId
   const regionIdList = state.regionIdList
   const index = regionIdList.findIndex(id => regionId === id)
-  if (index < 0)
+  if (index < 0) {
     return state
+  }
   return {
     ...state,
-    regionIdList: regionIdList.slice(0, index).concat(regionIdList.slice(index +1))
+    regionIdList: regionIdList.slice(0, index).concat(regionIdList.slice(index + 1))
   }
 }
 
@@ -35,8 +37,9 @@ const addRegionIds = (state, action) => {
   const nextRegionIdList = [...currentRegionIdList]
   regionIds.map(id => {
     let isExist = currentRegionIdList.some(rId => rId === id)
-    if (!isExist)
-        nextRegionIdList.push(id)
+    if (!isExist) {
+      nextRegionIdList.push(id)
+    }
   })
   return {
     ...state,
@@ -49,7 +52,7 @@ const removeRegionIds = (state, action) => {
   const currentRegionIdList = state.regionIdList
   const nextRegionIdList = currentRegionIdList.filter(id => {
     let isExist = regionIds.some(rId => rId === id)
-    return isExist ? false : true
+    return !isExist
   })
   return {
     ...state,
@@ -61,8 +64,9 @@ const addDistrictId = (state, action) => {
   const districtId = action.districtId
   const districtIdList = state.districtIdList
   const isExist = districtIdList.some(dId => dId === districtId)
-  if (isExist)
+  if (isExist) {
     return state
+  }
   return {
     ...state,
     districtIdList: [ ...districtIdList, districtId ]
@@ -73,11 +77,12 @@ const removeDistrictId = (state, action) => {
   const districtId = action.districtId
   const districtIdList = state.districtIdList
   const index = districtIdList.findIndex(id => districtId === id)
-  if (index < 0)
+  if (index < 0) {
     return state
+  }
   return {
     ...state,
-    districtIdList: districtIdList.slice(0, index).concat(districtIdList.slice(index +1))
+    districtIdList: districtIdList.slice(0, index).concat(districtIdList.slice(index + 1))
   }
 }
 

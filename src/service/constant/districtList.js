@@ -81,7 +81,7 @@ var districtList = [
   },
   {
     name: '企石区',
-    id:'47B1E4F3-0120-4CAA-839A-61E56DD7282E'
+    id: '47B1E4F3-0120-4CAA-839A-61E56DD7282E'
   },
   {
     name: '洪梅区',

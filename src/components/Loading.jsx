@@ -9,8 +9,10 @@ const style = {
 }
 
 class Loading extends React.Component {
-  getChildContext() {
-    return {muiTheme: getMuiTheme(baseTheme)}
+  getChildContext () {
+    return {
+      muiTheme: getMuiTheme(baseTheme)
+    }
   }
   render () {
     return (

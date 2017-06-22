@@ -7,7 +7,7 @@ const receiveRegionList = (state, action) => {
 }
 
 const regionList = (state = initialStatus, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case types.RECEIVE_REGION_LIST:
       return receiveRegionList(state, action)
     default:

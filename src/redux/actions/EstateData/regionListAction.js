@@ -1,7 +1,6 @@
 import types from '@actionTypes/EstateData'
 import { fetchServerRegionList } from '@service/api/estateData'
 
-
 export const requestRegionList = () => ({
   type: types.REQUEST_REGION_LIST
 })

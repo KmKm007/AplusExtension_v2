@@ -11,38 +11,38 @@ class PageObjectContainer extends React.Component {
       totalRow: PropTypes.number.isRequired,
       pageCount: PropTypes.number.isRequired
     }).isRequired
-   }
+  }
 
   onPageChange = page => {
     this.props.handlePageClick(page)
   }
 
   onNextPageClick = () => {
-    const { currentPage,maxPage } = this.props.pageObject
-    if ( currentPage >= maxPage)
-      return
-    this.props.handlePageClick(currentPage + 1)
+    const { currentPage, maxPage } = this.props.pageObject
+    if (currentPage < maxPage) {
+      this.props.handlePageClick(currentPage + 1)
+    }
   }
 
   onPrePageClick = () => {
     const { currentPage } = this.props.pageObject
-    if (currentPage <= 1)
-      return
-    this.props.handlePageClick(currentPage -1)
+    if (currentPage > 1) {
+      this.props.handlePageClick(currentPage - 1)
+    }
   }
 
   onLastPageClick = () => {
-    const { currentPage,maxPage } = this.props.pageObject
-    if (currentPage === maxPage)
-      return
-    this.props.handlePageClick(maxPage)
+    const { currentPage, maxPage } = this.props.pageObject
+    if (currentPage !== maxPage) {
+      this.props.handlePageClick(maxPage)
+    }
   }
 
   onFirstPageClick = () => {
     const { currentPage } = this.props.pageObject
-    if (currentPage === 1)
-      return
-    this.props.handlePageClick(1)
+    if (currentPage !== 1) {
+      this.props.handlePageClick(1)
+    }
   }
 
   render () {

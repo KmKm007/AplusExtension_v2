@@ -1,4 +1,5 @@
-import React,{PropTypes}  from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import AppBar from 'material-ui/AppBar'
@@ -9,10 +10,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import Download from 'material-ui/svg-icons/file/file-download'
 import Search from 'material-ui/svg-icons/action/search'
 
-class  Logged extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+class Logged extends React.Component {
   render () {
     return (
       <IconMenu
@@ -35,8 +33,10 @@ class  Logged extends React.Component {
 Logged.muiName = 'IconMenu'
 
 class EstateDataToolbar extends React.Component {
-  getChildContext() {
-    return {muiTheme: getMuiTheme(baseTheme)}
+  getChildContext () {
+    return {
+      muiTheme: getMuiTheme(baseTheme)
+    }
   }
 
   render () {
