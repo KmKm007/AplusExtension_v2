@@ -17,8 +17,7 @@ class EstateDataContainer extends React.Component {
     handlePropertyCountClick: PropTypes.func.isRequired,
     handleAvaPropertyCountClick: PropTypes.func.isRequired,
     handleKeyPropertyCountClick: PropTypes.func.isRequired,
-    handleBMRecomPropertyCountClick: PropTypes.func.isRequired,
-    handleDMRecomPropertyCountClick: PropTypes.func.isRequired,
+    handleRecomPropertyCountClick: PropTypes.func.isRequired,
     sortRule: PropTypes.string.isRequired,
     isDataFetched: PropTypes.bool.isRequired,
     isShowSearchBar: PropTypes.bool.isRequired
@@ -36,8 +35,9 @@ class EstateDataContainer extends React.Component {
   render() {
     const { dataList, pageObject, sortRule, filter, regionList, isDataFetched, isShowSearchBar } = this.props
     const { handleRealPropertyCountClick, handlePropertyCountClick,
-      handleAvaPropertyCountClick, handleKeyPropertyCountClick, handleBMRecomPropertyCountClick,
-      handleDMRecomPropertyCountClick, handleTrustRecPropertyCountClick,
+      handleAvaPropertyCountClick, handleKeyPropertyCountClick,
+      handleRecomPropertyCountClick, handleTrustRecPropertyCountClick,
+      handlePhonePropertyCountClick, handleAdmPropertyCountClick,
       handlePageClick, handleDataExport, handleSearchBarClick,
       handleDistrictChipCilck, handleRegionChipClick, handleClearRegionIds,
       fetchData } = this.props
@@ -56,9 +56,10 @@ class EstateDataContainer extends React.Component {
           handlePropertyCountClick={handlePropertyCountClick}
           handleAvaPropertyCountClick={handleAvaPropertyCountClick}
           handleKeyPropertyCountClick={handleKeyPropertyCountClick}
-          handleBMRecomPropertyCountClick={handleBMRecomPropertyCountClick}
-          handleDMRecomPropertyCountClick={handleDMRecomPropertyCountClick}
+          handleRecomPropertyCountClick={handleRecomPropertyCountClick}
           handleTrustRecPropertyCountClick={handleTrustRecPropertyCountClick}
+          handlePhonePropertyCountClick={handlePhonePropertyCountClick}
+          handleAdmPropertyCountClick={handleAdmPropertyCountClick}
         />
         <PageObjectContainer
           pageObject={pageObject}
@@ -111,17 +112,23 @@ const getSortList = (dataList, currentSortRule) => {
     case sortRule.REALSUR_PROPERTYCOUNT_ASC:
       sortFunc = (a, b) => a.realSurPropertyCount - b.realSurPropertyCount
       break
-    case sortRule.BMRECOM_PROPERTYCOUNT_DESC:
-      sortFunc = (a, b) => b.bmRecomPropertyCount - a.bmRecomPropertyCount
+    case sortRule.RECOM_PROPERTYCOUNT_DESC:
+      sortFunc = (a, b) => (b.bmRecomPropertyCount + b.dmRecomPropertyCount) - (a.bmRecomPropertyCount + a.dmRecomPropertyCount)
       break
-    case sortRule.BMRECOM_PROPERTYCOUNT_ASC:
-      sortFunc = (a, b) => a.bmRecomPropertyCount - b.bmRecomPropertyCount
+    case sortRule.RECOM_PROPERTYCOUNT_ASC:
+      sortFunc = (a, b) => (a.bmRecomPropertyCount + a.dmRecomPropertyCount) - (b.bmRecomPropertyCount + b.dmRecomPropertyCount)
       break
-    case sortRule.DMRECOM_PROPERTYCOUNT_DESC:
-      sortFunc = (a, b) => b.dmRecomPropertyCount - a.dmRecomPropertyCount
+    case sortRule.PHONE_PROPERTYCOUNT_DESC:
+      sortFunc = (a, b) => b.phonePropertyCount - a.phonePropertyCount
       break
-    case sortRule.DMRECOM_PROPERTYCOUNT_ASC:
-      sortFunc = (a, b) => a.dmRecomPropertyCount - b.dmRecomPropertyCount
+    case sortRule.PHONE_PROPERTYCOUNT_ASC:
+      sortFunc = (a, b) => a.phonePropertyCount - b.phonePropertyCount
+      break
+    case sortRule.ADM_PROPERTYCOUNT_DESC:
+      sortFunc = (a, b) => b.admPropertyCount - a.admPropertyCount
+      break
+    case sortRule.ADM_PROPERTYCOUNT_ASC:
+      sortFunc = (a, b) => a.admPropertyCount - b.admPropertyCount
       break
     case sortRule.AVA_PROPERTYCOUNT_DESC:
     default:
@@ -181,23 +188,31 @@ const mapDispatchToProps = dispatch => ({
     else
       dispatch(actions.changeOrderRule(sortRule.KEY_PROPERTYCOUNT_DESC))
   },
-  handleBMRecomPropertyCountClick: currentSortRule => {
-    if (currentSortRule === sortRule.BMRECOM_PROPERTYCOUNT_DESC)
-      dispatch(actions.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_ASC))
+  handleRecomPropertyCountClick: currentSortRule => {
+    if (currentSortRule === sortRule.RECOM_PROPERTYCOUNT_DESC)
+      dispatch(actions.changeOrderRule(sortRule.RECOM_PROPERTYCOUNT_ASC))
     else
-      dispatch(actions.changeOrderRule(sortRule.BMRECOM_PROPERTYCOUNT_DESC))
-  },
-  handleDMRecomPropertyCountClick: currentSortRule => {
-    if (currentSortRule === sortRule.DMRECOM_PROPERTYCOUNT_DESC)
-      dispatch(actions.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_ASC))
-    else
-      dispatch(actions.changeOrderRule(sortRule.DMRECOM_PROPERTYCOUNT_DESC))
+      dispatch(actions.changeOrderRule(sortRule.RECOM_PROPERTYCOUNT_DESC))
   },
   handleTrustRecPropertyCountClick: currentSortRule => {
     if (currentSortRule === sortRule.TRUSTREC_PROPERTYCOUNT_DESC)
       dispatch(actions.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_ASC))
     else
       dispatch(actions.changeOrderRule(sortRule.TRUSTREC_PROPERTYCOUNT_DESC))
+  },
+  handlePhonePropertyCountClick (currentSortRule) {
+    if (currentSortRule === sortRule.PHONE_PROPERTYCOUNT_DESC) {
+      dispatch(actions.changeOrderRule(sortRule.PHONE_PROPERTYCOUNT_ASC))
+    } else {
+      dispatch(actions.changeOrderRule(sortRule.PHONE_PROPERTYCOUNT_DESC))
+    }
+  },
+  handleAdmPropertyCountClick (currentSortRule) {
+    if (currentSortRule === sortRule.ADM_PROPERTYCOUNT_DESC) {
+      dispatch(actions.changeOrderRule(sortRule.ADM_PROPERTYCOUNT_ASC))
+    } else {
+      dispatch(actions.changeOrderRule(sortRule.ADM_PROPERTYCOUNT_DESC))
+    }
   },
   handleSearchBarClick: status => {
     if (status)

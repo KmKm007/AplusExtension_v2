@@ -55,7 +55,7 @@ class EstateData extends React.Component {
     let headerClass = cs('table-header')
     const { sortRule, handlePropertyCountClick, handleAvaPropertyCountClick,
       handleRealPropertyCountClick, handleKeyPropertyCountClick, handleTrustRecPropertyCountClick,
-      handleDMRecomPropertyCountClick, handleBMRecomPropertyCountClick } = this.props
+      handleRecomPropertyCountClick, handlePhonePropertyCountClick, handleAdmPropertyCountClick } = this.props
     return (
       <div>
         <Table fixedHeader={true} >
@@ -93,13 +93,18 @@ class EstateData extends React.Component {
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
-                <a className={sortRule === 'BMRECOM_PROPERTYCOUNT_ASC' || sortRule === 'BMRECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleBMRecomPropertyCountClick(sortRule)}>经理推荐
+                <a className={sortRule === 'RECOM_PROPERTYCOUNT_ASC' || sortRule === 'RECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
+                  onClick={() => handleRecomPropertyCountClick(sortRule)}>经理推荐
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
-                <a className={sortRule === 'DMRECOM_PROPERTYCOUNT_ASC' || sortRule === 'DMRECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleDMRecomPropertyCountClick(sortRule)}>区经推荐
+                <a className={sortRule === 'PHONE_PROPERTYCOUNT_DESC' || sortRule === 'PHONE_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
+                  onClick={() => handlePhonePropertyCountClick(sortRule)}>电话房源数
+                </a>
+              </TableHeaderColumn>
+              <TableHeaderColumn>
+                <a className={sortRule === 'ADM_PROPERTYCOUNT_DESC' || sortRule === 'ADM_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
+                  onClick={() => handleAdmPropertyCountClick(sortRule)}>官网房源数
                 </a>
               </TableHeaderColumn>
             </TableRow>
@@ -118,9 +123,10 @@ class EstateData extends React.Component {
                 <TableRowColumn>{data.realSurPropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.keyPropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.trustRecPropertyCount}</TableRowColumn>
-                <TableRowColumn>{data.bmRecomPropertyCount}</TableRowColumn>
-                <TableRowColumn>{data.dmRecomPropertyCount}</TableRowColumn>
-              </TableRow>
+                <TableRowColumn>{data.bmRecomPropertyCount + data.dmRecomPropertyCount}</TableRowColumn>
+                <TableRowColumn>{data.phonePropertyCount}</TableRowColumn>
+                <TableRowColumn>{data.admPropertyCount}</TableRowColumn>
+            </TableRow>
             )
           })}
           </TableBody>

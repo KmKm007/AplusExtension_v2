@@ -11,10 +11,9 @@ const initialStatus = {
 const fetchSelectedPage = (state, action) => {
   const { currentPage, maxPage } = state
   const selectedPage = action.selectedPage
-  if (currentPage === selectedPage ||
-      selectedPage > maxPage ||
-      selectedPage < 1)
+  if (currentPage === selectedPage || selectedPage > maxPage || selectedPage < 1) {
       return state
+  }
   return {
     ...state,
     currentPage: selectedPage
