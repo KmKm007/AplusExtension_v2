@@ -5,7 +5,7 @@ export const fetchServerData = (filter, callBack) => {
   fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json;charset=utf-8'
     },
     body: filter ? JSON.stringify(filter) : ''
   })
@@ -23,9 +23,9 @@ export const fetchServerExportDataCode = (filter, callBack) => {
   fetch(exportUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json;charset=utf-8'
     },
-    body: 'filter=' + JSON.stringify(filter)
+    body: JSON.stringify(filter)
   })
   .then(resp => {
     if (resp.ok && resp.status === 200) {

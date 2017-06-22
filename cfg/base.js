@@ -39,7 +39,10 @@ module.exports = {
       '@actions': `${defaultSettings.srcPath}/redux/actions/`,
       '@reducers': `${defaultSettings.srcPath}/redux/reducers/`,
       '@store': `${defaultSettings.srcPath}/redux/store/`,
-      '@service': `${defaultSettings.srcPath}/service/`
+      '@service': `${defaultSettings.srcPath}/service/`,
+      '@template': `${defaultSettings.srcPath}/template/`,
+      '@pages':  `${defaultSettings.srcPath}/pages/`,
+      '@utils': `${defaultSettings.srcPath}/utils/`
     }
   },
   module: {}

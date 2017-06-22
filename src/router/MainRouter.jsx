@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
-import EstateDataPage from '../page/EstateDataPage'
+import EstateDataPage from '@pages/EstateDataPage'
 
 const MainRouter = () => (
   <Router>

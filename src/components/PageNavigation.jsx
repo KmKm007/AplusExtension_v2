@@ -1,18 +1,14 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import MaterialUIComponent from '@template/MaterialUIComponent'
 import RaisedButton from 'material-ui/RaisedButton'
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 const style = {
   margin: 5,
   minWidth: 'auto'
 }
 
-class PageNavigation extends React.Component {
-  getChildContext () {
-    return {muiTheme: getMuiTheme(baseTheme)}
-  }
-
+class PageNavigation extends MaterialUIComponent {
   render () {
     let pageArray = []
     let currentPage = this.props.currentPage
@@ -88,10 +84,6 @@ PageNavigation.propTypes = {
   handlePrePageClick: PropTypes.func.isRequired,
   handleLastPageClick: PropTypes.func.isRequired,
   handleFirstPageClick: PropTypes.func.isRequired
-}
-
-PageNavigation.childContextTypes = {
-  muiTheme: PropTypes.object.isRequired
 }
 
 export default PageNavigation
