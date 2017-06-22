@@ -1,16 +1,14 @@
 import React from 'react'
-import { Router, Route, browserHistory, Redirect } from 'react-router'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import EstateDataPage from '../page/EstateDataPage'
 
-class MainRouter extends React.Component {
-  render () {
-    return (
-      <Router history={ browserHistory }>
-        <Route path="/data" component={ EstateDataPage } />
-        <Redirect from="/" to="/data"  />
-      </Router>
-    )
-  }
-}
+const MainRouter = () => (
+  <Router>
+    <Switch>
+      <Route path="/data" component={EstateDataPage}/>
+      <Redirect from="/" to="/data"/>
+    </Switch>
+  </Router>
+)
 
 export default MainRouter
