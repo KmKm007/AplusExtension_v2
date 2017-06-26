@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <span>{version}</span><br/>
-      <span>东莞中原 信息运营中心出品</span>
+      <span>东莞中原 信息运营中心</span>
     </div>
   )
 }
