@@ -46,6 +46,12 @@ const getSortList = (dataList, currentSortRule) => {
     case sortRule.ADM_PROPERTYCOUNT_DESC:
       sortFunc = (a, b) => b.admPropertyCount - a.admPropertyCount
       break
+    case sortRule.AVA_SALE_PROPERTYCOUNT_DESC:
+      sortFunc = (a, b) => b.avaSalePropertyCount - a.avaSalePropertyCount
+      break
+    case sortRule.AVA_SALE_PROPERTYCOUNT_ASC:
+      sortFunc = (a, b) => a.avaSalePropertyCount - b.avaSalePropertyCount
+      break
     case sortRule.ADM_PROPERTYCOUNT_ASC:
       sortFunc = (a, b) => a.admPropertyCount - b.admPropertyCount
       break
@@ -144,6 +150,14 @@ const mapDispatchToProps = dispatch => ({
       dispatch(actions.changeOrderRule(sortRule.ADM_PROPERTYCOUNT_ASC))
     } else {
       dispatch(actions.changeOrderRule(sortRule.ADM_PROPERTYCOUNT_DESC))
+    }
+    dispatch(actions.fetchSelectedPage(1))
+  },
+  handleAvaSalePropertyCountClick (currentSortRule) {
+    if (currentSortRule === sortRule.AVA_SALE_PROPERTYCOUNT_DESC) {
+      dispatch(actions.changeOrderRule(sortRule.AVA_SALE_PROPERTYCOUNT_ASC))
+    } else {
+      dispatch(actions.changeOrderRule(sortRule.AVA_SALE_PROPERTYCOUNT_DESC))
     }
     dispatch(actions.fetchSelectedPage(1))
   },

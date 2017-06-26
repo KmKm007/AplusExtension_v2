@@ -46,7 +46,8 @@ class EstateData extends MaterialUIComponent {
     let headerClass = cs('table-header')
     const { sortRule, handlePropertyCountClick, handleAvaPropertyCountClick,
       handleRealPropertyCountClick, handleKeyPropertyCountClick, handleTrustRecPropertyCountClick,
-      handleRecomPropertyCountClick, handlePhonePropertyCountClick, handleAdmPropertyCountClick } = this.props
+      handleRecomPropertyCountClick, handlePhonePropertyCountClick, handleAdmPropertyCountClick,
+      handleAvaSalePropertyCountClick } = this.props
     return (
       <div>
         <Table fixedHeader={true} >
@@ -65,27 +66,27 @@ class EstateData extends MaterialUIComponent {
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'AVA_PROPERTYCOUNT_DESC' || sortRule === 'AVA_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleAvaPropertyCountClick(sortRule)}>有效房源
+                  onClick={() => handleAvaPropertyCountClick(sortRule)}>有效房源数
+                </a>
+              </TableHeaderColumn>
+              <TableHeaderColumn>
+                <a className={sortRule === 'AVA_SALE_PROPERTYCOUNT_DESC' || sortRule === 'AVA_SALE_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
+                  onClick={() => handleAvaSalePropertyCountClick(sortRule)}>有效售房数
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'REALSUR_PROPERTYCOUNT_ASC' || sortRule === 'REALSUR_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleRealPropertyCountClick(sortRule)}>实勘房源
+                  onClick={() => handleRealPropertyCountClick(sortRule)}>实勘房源数
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'KEY_PROPERTYCOUNT_ASC' || sortRule === 'KEY_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleKeyPropertyCountClick(sortRule)}>钥匙房源
+                  onClick={() => handleKeyPropertyCountClick(sortRule)}>钥匙房源数
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
                 <a className={sortRule === 'TRUSTREC_PROPERTYCOUNT_ASC' || sortRule === 'TRUSTREC_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleTrustRecPropertyCountClick(sortRule)}>委托房源
-                </a>
-              </TableHeaderColumn>
-              <TableHeaderColumn>
-                <a className={sortRule === 'RECOM_PROPERTYCOUNT_ASC' || sortRule === 'RECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
-                  onClick={() => handleRecomPropertyCountClick(sortRule)}>经理推荐
+                  onClick={() => handleTrustRecPropertyCountClick(sortRule)}>委托房源数
                 </a>
               </TableHeaderColumn>
               <TableHeaderColumn>
@@ -96,6 +97,11 @@ class EstateData extends MaterialUIComponent {
               <TableHeaderColumn>
                 <a className={sortRule === 'ADM_PROPERTYCOUNT_DESC' || sortRule === 'ADM_PROPERTYCOUNT_ASC' ? activeHeaderClass : headerClass}
                   onClick={() => handleAdmPropertyCountClick(sortRule)}>官网房源数
+                </a>
+              </TableHeaderColumn>
+              <TableHeaderColumn>
+                <a className={sortRule === 'RECOM_PROPERTYCOUNT_ASC' || sortRule === 'RECOM_PROPERTYCOUNT_DESC' ? activeHeaderClass : headerClass}
+                  onClick={() => handleRecomPropertyCountClick(sortRule)}>经理推荐
                 </a>
               </TableHeaderColumn>
             </TableRow>
@@ -111,12 +117,13 @@ class EstateData extends MaterialUIComponent {
                 <TableRowColumn style={style.t7}><span title={data.estate.name}>{data.estate.name}</span></TableRowColumn>
                 <TableRowColumn>{data.propertyCount}</TableRowColumn>
                 <TableRowColumn>{data.avaPropertyCount}</TableRowColumn>
+                <TableRowColumn>{data.avaSalePropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.realSurPropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.keyPropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.trustRecPropertyCount}</TableRowColumn>
-                <TableRowColumn>{data.bmRecomPropertyCount + data.dmRecomPropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.phonePropertyCount}</TableRowColumn>
                 <TableRowColumn>{data.admPropertyCount}</TableRowColumn>
+                <TableRowColumn>{data.bmRecomPropertyCount + data.dmRecomPropertyCount}</TableRowColumn>
             </TableRow>
             )
           })}

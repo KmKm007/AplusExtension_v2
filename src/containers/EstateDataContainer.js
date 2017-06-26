@@ -16,6 +16,7 @@ class EstateDataContainer extends React.Component {
     handleAvaPropertyCountClick: PropTypes.func.isRequired,
     handleKeyPropertyCountClick: PropTypes.func.isRequired,
     handleRecomPropertyCountClick: PropTypes.func.isRequired,
+    handleAvaSalePropertyCountClick: PropTypes.func.isRequired,
     sortRule: PropTypes.string.isRequired,
     isDataFetched: PropTypes.bool.isRequired,
     isShowSearchBar: PropTypes.bool.isRequired
@@ -36,9 +37,9 @@ class EstateDataContainer extends React.Component {
       handleAvaPropertyCountClick, handleKeyPropertyCountClick,
       handleRecomPropertyCountClick, handleTrustRecPropertyCountClick,
       handlePhonePropertyCountClick, handleAdmPropertyCountClick,
-      handlePageClick, handleDataExport, handleSearchBarClick,
-      handleDistrictChipCilck, handleRegionChipClick, handleClearRegionIds,
-      fetchData } = this.props
+      handleAvaSalePropertyCountClick, handlePageClick, handleDataExport,
+      handleSearchBarClick, handleDistrictChipCilck, handleRegionChipClick,
+      handleClearRegionIds, fetchData } = this.props
     const { regionIdList, districtIdList } = filter
     return isDataFetched ? (
       <div>
@@ -58,6 +59,7 @@ class EstateDataContainer extends React.Component {
           handleTrustRecPropertyCountClick={handleTrustRecPropertyCountClick}
           handlePhonePropertyCountClick={handlePhonePropertyCountClick}
           handleAdmPropertyCountClick={handleAdmPropertyCountClick}
+          handleAvaSalePropertyCountClick={handleAvaSalePropertyCountClick}
         />
         <PageObjectContainer
           pageObject={pageObject}
