@@ -1,4 +1,4 @@
-import types from '@actionTypes/EstateData'
+import types from '@actionTypes'
 
 export const addRegionId = regionId => ({
   type: types.ADD_REGION_ID,

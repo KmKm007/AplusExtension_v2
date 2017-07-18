@@ -1,4 +1,4 @@
-const baseURL = (process.env.NODE_ENV !== 'production')
+const baseURL = (process.env.NODE_ENV === 'production')
   ? 'http://10.17.1.157:8888/APlusExtension/api'
   : 'http://10.17.1.58:8888/APlusExtension/api'
 

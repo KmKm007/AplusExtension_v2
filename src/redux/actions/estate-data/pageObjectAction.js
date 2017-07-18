@@ -1,4 +1,4 @@
-import types from '@actionTypes/EstateData'
+import types from '@actionTypes'
 
 export const updatePageObject = dataList => ({
   type: types.UPDATE_PAGE_OBJECT,

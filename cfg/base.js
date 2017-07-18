@@ -44,7 +44,8 @@ module.exports = {
       '@service': `${defaultSettings.srcPath}/service/`,
       '@template': `${defaultSettings.srcPath}/template/`,
       '@pages':  `${defaultSettings.srcPath}/pages/`,
-      '@utils': `${defaultSettings.srcPath}/utils/`
+      '@utils': `${defaultSettings.srcPath}/utils/`,
+      '@assets': `${defaultSettings.srcPath}/assets`
     }
   },
   module: {}

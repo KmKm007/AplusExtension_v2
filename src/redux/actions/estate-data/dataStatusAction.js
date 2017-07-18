@@ -1,4 +1,4 @@
-import types from '@actionTypes/EstateData'
+import types from '@actionTypes'
 
 export const finishDataFetch = () => ({
   type: types.FINISH_DATA_FETCH

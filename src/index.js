@@ -5,6 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import AppRouter from './router/MainRouter'
 import store from '@store'
 import './styles/App.css'
+import 'normalize.css'
 
 injectTapEventPlugin()
 

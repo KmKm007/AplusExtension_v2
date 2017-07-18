@@ -1,4 +1,4 @@
-import types from '@actionTypes/EstateData'
+import types from '@actionTypes'
 
 const initialState = {
   regionIdList: [],

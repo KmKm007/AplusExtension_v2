@@ -1,4 +1,4 @@
-import actions from '@actions/EstateData'
+import actions from '@actions'
 import sortRule from '@service/constant/sortRule'
 
 const getSortList = (dataList, currentSortRule) => {

@@ -1,4 +1,4 @@
-import types from '@actionTypes/EstateData'
+import types from '@actionTypes'
 import { fetchServerData, fetchServerExportDataCode, downloadServerData } from '@service/api/estateData'
 import { finishDataFetch } from './dataStatusAction'
 import { updatePageObject } from './pageObjectAction'
