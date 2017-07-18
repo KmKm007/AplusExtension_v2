@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './estate-drawing.scss'
 import T1 from './template/t1/index'
-import { mapStateToProps } from './store'
+import { mapStateToProps, mapDispatchToProps } from './store'
 
 class EstateDrawing extends React.Component {
   render () {
@@ -19,4 +19,4 @@ class EstateDrawing extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(EstateDrawing)
+export default connect(mapStateToProps, mapDispatchToProps)(EstateDrawing)

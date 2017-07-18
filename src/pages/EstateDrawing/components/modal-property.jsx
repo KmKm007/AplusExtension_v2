@@ -2,7 +2,38 @@ import React from 'react'
 import cs from 'classnames'
 
 const ModalProperty = (props) => {
-  const { showModal } = props
+  const { showModal, handleClose, propertys, detailIndex, handleClickProperty } = props
+  let content
+  if (showModal === 1) {
+    content = (
+      <section className="modal-property-search-result">
+        <ul>
+          {
+            propertys.map(p => (
+              <li key={p.id} onClick={() => handleClickProperty(p.id)}>{`${p.estate.name}-${p.building.name}-${p.houseNo}`}</li>
+            ))
+          }
+        </ul>
+      </section>
+    )
+  } else if (showModal === 2) {
+    const p = propertys[detailIndex]
+    content = (
+      <section className="modal-property-detail">
+        <section>
+          <header>{`${p.estate.name}-${p.building.name}-${p.houseNo}`}</header>
+          <p>户型：{`${p.countF}房${p.countT}厅`}</p>
+          <p>售价：{`${p.salePrice}万`}</p>
+          <p>建筑面积：{`${p.square}㎡`}</p>
+        </section>
+        <section className="modal-property-confirm">
+          <button className="modal-property-confirm-button">确定</button>
+        </section>
+      </section>
+    )
+  } else {
+    content = null
+  }
   return (
     <div className={cs({
       'modal-property': true,
@@ -10,7 +41,7 @@ const ModalProperty = (props) => {
     })}
     >
       <div className="modal-property-body">
-        <div className="modal-property-close">
+        <div className="modal-property-close" onClick={handleClose}>
           <svg fill="#9e9e9e" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
             <path d="M0 0h24v24H0z" fill="none"/>
@@ -28,16 +59,7 @@ const ModalProperty = (props) => {
             </span>
           </div>
         </section>
-        <section className="modal-property-search-result">
-          <ul>
-            <li>东泰花园明华苑1号楼2单元103号</li>
-            <li>东泰花园明华苑1号楼2单元103号</li>
-            <li>东泰花园明华苑1号楼2单元103号</li>
-          </ul>
-        </section>
-        <section className="modal-property-confirm">
-          <button className="modal-property-confirm-button">确定</button>
-        </section>
+        {content}
       </div>
       <div className="modal-property-cover">
       </div>

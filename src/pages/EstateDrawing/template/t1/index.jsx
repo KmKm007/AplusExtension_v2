@@ -14,13 +14,27 @@ class T1 extends React.Component {
     }
   }
 
+  onShowSearchModal = () => {
+    this.props.changeModal(1)
+  }
+
+  onCloseModal = () => {
+    this.props.changeModal(0)
+  }
+
+  onClickProperty = id => {
+    this.props.changeSelectedProperty(id)
+    this.props.changeModal(2)
+  }
+
   render () {
     const estatePhoto = require('@assets/images/drawing/t1/house01.png')
     const estatePhoto2 = require('@assets/images/drawing/t1/house02.png')
     const logo = require('@assets/images/logo.png')
     const upload = require('@assets/images/drawing/upload.png')
     const qrcode = require('@assets/images/qrcode.png')
-    const { showModal } = this.props
+    const { showModal, propertys, selectedPropertyId } = this.props
+    const detailIndex = propertys && propertys.findIndex(p => p.id === selectedPropertyId)
     return (
       <div className="drawing-t1">
         <section className="t1-section1">
@@ -42,7 +56,7 @@ class T1 extends React.Component {
           </div>
         </section>
         <section className="t1-section3">
-          <span className="t1-estate-price">请选择房源</span>
+          <span className="t1-estate-price" onClick={this.onShowSearchModal}>请选择房源</span>
         </section>
         <footer className="t1-footer">
           <div className="t1-footer-d">
@@ -57,6 +71,10 @@ class T1 extends React.Component {
         </footer>
         <ModalProperty
           showModal={showModal}
+          handleClose={this.onCloseModal}
+          propertys={propertys}
+          handleClickProperty={this.onClickProperty}
+          detailIndex={detailIndex}
         />
         <input ref="file" className="undisplay" type="file"/>
         <input ref="file2" className="undisplay" type="file"/>

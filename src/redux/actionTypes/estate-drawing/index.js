@@ -1,16 +1,5 @@
-import actionTypes from '@actionTypes'
+export const ESTATE_DRAWING_CHANGE_MODAL = 'ESTATE_DRAWING_CHANGE_MODAL'
 
-export function estateDrawingCloseModal () {
-  return {
-    type: actionTypes.ESTATE_DRAWING_CLOSE_MODAL
-  }
-}
+export const ESTATE_DRAWING_CLOSE_MODAL = 'ESTATE_DRAWING_CLOSE_MODAL'
 
-export function estateDrawingChangeModal (type) {
-  return {
-    type: actionTypes.ESTATE_DRAWING_CHANGE_MODAL,
-    payload: {
-      type
-    }
-  }
-}
+export const ESTATE_DRAWING_CHANGE_SELECTED_PROPERTY = 'ESTATE_DRAWING_CHANGE_SELECTED_PROPERTY'
