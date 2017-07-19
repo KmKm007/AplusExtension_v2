@@ -1,7 +1,9 @@
 import types from '@actionTypes'
-import { fetchServerData, fetchServerExportDataCode, downloadServerData } from '@service/api/estateData'
+import apis from '@service/api'
 import { finishDataFetch } from './dataStatusAction'
 import { updatePageObject } from './pageObjectAction'
+
+const { fetchServerData, fetchServerExportDataCode, downloadServerData } = apis
 
 export const requestData = () => ({
   type: types.REQUEST_DATA

@@ -2,25 +2,54 @@ import actionTypes from '@actionTypes'
 
 const initialState = {
   showModal: 0,
-  propertys: [
+  propertys: [],
+  selectedPropertyId: null,
+  isFetchingPropertys: null,
+  confirmedProperty: null,
+  tempSelectTags: [],
+  selectedTags: [],
+  tags: [
     {
-      building: {
-        name: '03栋'
-      },
-      countF: 4,
-      countT: 2,
-      estate: {
-        name: '中信凯旋城(塘厦)'
-      },
-      id: 'D0C28031-F963-4210-9196-DA32183283C7',
-      keyCount: 0,
-      no: 'LSQ009882',
-      salePrice: 312.00,
-      square: 142.39,
-      houseNo: '1203'
+      id: 1,
+      name: '南北通透'
+    },
+    {
+      id: 2,
+      name: '采光好'
+    },
+    {
+      id: 3,
+      name: '精装三房'
+    },
+    {
+      id: 4,
+      name: '看房方便哦'
+    },
+    {
+      id: 5,
+      name: '风水好'
+    },
+    {
+      id: 6,
+      name: '南北通透'
+    },
+    {
+      id: 7,
+      name: '采光好'
+    },
+    {
+      id: 8,
+      name: '精装三房'
+    },
+    {
+      id: 9,
+      name: '看房方便哦'
+    },
+    {
+      id: 10,
+      name: '风水好'
     }
-  ],
-  selectedPropertyId: null
+  ]
 }
 
 function changeModal (state, action) {
@@ -45,6 +74,46 @@ function changeSelectedProperty (state, action) {
   }
 }
 
+function requestPropertysByNo (state) {
+  return {
+    ...state,
+    isFetchingPropertys: true
+  }
+}
+
+function receivePropertys (state, action) {
+  const payload = action.payload
+  return {
+    ...state,
+    isFetchingPropertys: false,
+    propertys: payload.propertys
+  }
+}
+
+function changeConfirmedProperty (state, action) {
+  const payload = action.payload
+  return {
+    ...state,
+    confirmedProperty: payload.property
+  }
+}
+
+function updateTempSelectedTags (state, action) {
+  const payload = action.payload
+  return {
+    ...state,
+    tempSelectTags: payload.tags
+  }
+}
+
+function updateSelectedTags (state, action) {
+  const payload = action.payload
+  return {
+    ...state,
+    selectedTags: payload.tags
+  }
+}
+
 const estateDrawingReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ESTATE_DRAWING_CLOSE_MODAL:
@@ -52,6 +121,16 @@ const estateDrawingReducer = (state = initialState, action) => {
       return changeModal(state, action)
     case actionTypes.ESTATE_DRAWING_CHANGE_SELECTED_PROPERTY:
       return changeSelectedProperty(state, action)
+    case actionTypes.ESTATE_DRAWING_REQUEST_PROPERTYS_NO:
+      return requestPropertysByNo(state)
+    case actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTYS:
+      return receivePropertys(state, action)
+    case actionTypes.ESTATE_DRAWING_CHANGE_CONFIRMED_PROPERTY:
+      return changeConfirmedProperty(state, action)
+    case actionTypes.ESTATE_DRAWING_UPDATE_TEMP_SELECTED_TAGS:
+      return updateTempSelectedTags(state, action)
+    case actionTypes.ESTATE_DRAWING_UPDATE_SELECTED_TAGS:
+      return updateSelectedTags(state, action)
     default:
       return state
   }
