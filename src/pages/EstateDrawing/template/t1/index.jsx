@@ -71,9 +71,19 @@ class T1 extends React.Component {
     }
   }
 
+  onModalTagClose = () => {
+    this.props.handleRestoreTags()
+    this.onCloseModal()
+  }
+
+  onSaveTags = () => {
+    this.props.saveTags()
+    this.onCloseModal()
+  }
+
   render () {
     const { showModal, propertys, selectedPropertyId, confirmedProperty,
-      tags, selectedTags, tempSelectTags } = this.props
+      tags, selectedTags, tempSelectedTags, handleTagClick } = this.props
     const detailIndex = propertys && propertys.findIndex(p => p.id === selectedPropertyId)
     return (
       <div className="drawing-t1">
@@ -146,10 +156,11 @@ class T1 extends React.Component {
         />
         <ModalTag
           tags={tags}
-          selectedTags={selectedTags}
-          tempSelectTags={tempSelectTags}
+          tempSelectedTags={tempSelectedTags}
           showModal={showModal}
-          handleClose={this.onCloseModal}
+          handleClose={this.onModalTagClose}
+          handleTagClick={handleTagClick}
+          handleSave={this.onSaveTags}
         />
         <input ref="file" name="1" className="undisplay" type="file"/>
         <input ref="file2" name="2" className="undisplay" type="file"/>

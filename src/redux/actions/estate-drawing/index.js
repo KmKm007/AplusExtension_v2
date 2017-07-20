@@ -75,20 +75,23 @@ export function estateDrawingChangeConfirmedProperty (property) {
   }
 }
 
-export function estateDrawingUpdateTempSelectedTags (tags) {
+export function estateDrawingUpdateTempSelectedTags (tagId) {
   return {
     type: actionTypes.ESTATE_DRAWING_UPDATE_TEMP_SELECTED_TAGS,
     payload: {
-      tags
+      tagId
     }
   }
 }
 
-export function estateDrawingUpdateSelectedTags (tags) {
+export function estateDrawingUpdateSelectedTags () {
   return {
-    type: actionTypes.ESTATE_DRAWING_UPDATE_SELECTED_TAGS,
-    payload: {
-      tags
-    }
+    type: actionTypes.ESTATE_DRAWING_UPDATE_SELECTED_TAGS
+  }
+}
+
+export function estateDrawingRestoreTags () {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RESTORE_TAGS
   }
 }

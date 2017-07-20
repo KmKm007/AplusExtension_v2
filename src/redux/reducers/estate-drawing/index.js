@@ -6,7 +6,7 @@ const initialState = {
   selectedPropertyId: null,
   isFetchingPropertys: null,
   confirmedProperty: null,
-  tempSelectTags: [],
+  tempSelectedTags: [],
   selectedTags: [],
   tags: [
     {
@@ -100,17 +100,32 @@ function changeConfirmedProperty (state, action) {
 
 function updateTempSelectedTags (state, action) {
   const payload = action.payload
+  const tagId = payload.tagId
+  const tempSelectedTags = state.tempSelectedTags
+  const isExist = tempSelectedTags.findIndex(t => t === tagId) >= 0
+  let nextTempSelectedTags
+  if (isExist) {
+    nextTempSelectedTags = tempSelectedTags.filter(t => t !== tagId)
+  } else {
+    nextTempSelectedTags = [...tempSelectedTags, tagId]
+  }
   return {
     ...state,
-    tempSelectTags: payload.tags
+    tempSelectedTags: nextTempSelectedTags
   }
 }
 
 function updateSelectedTags (state, action) {
-  const payload = action.payload
   return {
     ...state,
-    selectedTags: payload.tags
+    selectedTags: state.tempSelectedTags
+  }
+}
+
+function restoreTags (state) {
+  return {
+    ...state,
+    tempSelectedTags: state.selectedTags
   }
 }
 
@@ -131,6 +146,8 @@ const estateDrawingReducer = (state = initialState, action) => {
       return updateTempSelectedTags(state, action)
     case actionTypes.ESTATE_DRAWING_UPDATE_SELECTED_TAGS:
       return updateSelectedTags(state, action)
+    case actionTypes.ESTATE_DRAWING_RESTORE_TAGS:
+      return restoreTags(state)
     default:
       return state
   }

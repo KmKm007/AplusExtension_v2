@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   confirmedProperty: state.estateDrawing.confirmedProperty,
   tags: state.estateDrawing.tags,
   selectedTags: state.estateDrawing.selectedTags,
-  tempSelectTags: state.estateDrawing.tempSelectTags
+  tempSelectedTags: state.estateDrawing.tempSelectedTags
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -26,11 +26,14 @@ const mapDispatchToProps = dispatch => ({
   changeConfirmedProperty (property) {
     dispatch(actions.estateDrawingChangeConfirmedProperty(property))
   },
-  updateSelectedTags (tags) {
-    dispatch(actions.estateDrawingUpdateSelectedTags(tags))
+  saveTags () {
+    dispatch(actions.estateDrawingUpdateSelectedTags())
   },
-  updateTempSelectedTags (tags) {
-    dispatch(actions.estateDrawingUpdateTempSelectedTags(tags))
+  handleRestoreTags () {
+    dispatch(actions.estateDrawingRestoreTags())
+  },
+  handleTagClick (tagId) {
+    dispatch(actions.estateDrawingUpdateTempSelectedTags(tagId))
   }
 })
 

@@ -2,8 +2,12 @@ import React from 'react'
 import cs from 'classnames'
 
 class ModalTag extends React.Component {
+  onTagClick (tagId) {
+    this.props.handleTagClick(tagId)
+  }
+
   render () {
-    const { showModal, tags, handleClose } = this.props
+    const { showModal, tags, tempSelectedTags, handleClose, handleSave } = this.props
     return (
       <div className={cs({
         'modal-property': true,
@@ -21,12 +25,20 @@ class ModalTag extends React.Component {
           <ul className="modal-tag-list clearfix">
             {
               tags.map(tag => (
-                <li key={tag.id}>{tag.name}</li>
+                <li
+                  className={cs({
+                    'modal-active-tag': tempSelectedTags.findIndex(t => t === tag.id) >= 0
+                  })}
+                  key={tag.id}
+                  onClick={this.onTagClick.bind(this, tag.id)}
+                >
+                  {tag.name}
+                </li>
               ))
             }
           </ul>
           <section className="modal-property-confirm">
-            <button className="modal-property-confirm-button">保存</button>
+            <button className="modal-property-confirm-button" onClick={handleSave}>保存</button>
           </section>
         </div>
         <div className="modal-property-cover">

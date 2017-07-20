@@ -2,6 +2,13 @@ import React from 'react'
 import cs from 'classnames'
 
 class ModalProperty extends React.Component {
+  componentWillReceiveProps (nextProps) {
+    const { showModal } = this.props
+    const { showModal: showModal2 } = nextProps
+    if (showModal === 0 && showModal2 === 1) {
+    }
+  }
+
   onSearchClick = () => {
     const element = this.refs.no
     const value = element.value
@@ -9,6 +16,7 @@ class ModalProperty extends React.Component {
       this.props.handleSearchProperty(value)
     }
   }
+
   render () {
     const { showModal, handleClose, propertys, detailIndex, handleClickProperty, handleConfirm } = this.props
     let content
