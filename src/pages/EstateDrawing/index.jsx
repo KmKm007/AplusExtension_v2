@@ -6,7 +6,7 @@ import { mapStateToProps, mapDispatchToProps } from './store'
 
 class EstateDrawing extends React.Component {
   componentWillMount () {
-    document.title = '房源纸设计'
+    document.title = '房源纸制作'
   }
 
   render () {

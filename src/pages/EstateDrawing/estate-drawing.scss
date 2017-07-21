@@ -1,7 +1,6 @@
 .drawing-t1 , .drawing-t2, .drawing-t3 {
   font-family: SimHei;
 }
-
 .modal-property {
   color: #333333;
 }
@@ -113,12 +112,12 @@
   padding-left: 10px;
 
   & header {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 12px;
   }
   & p {
     margin: 8px 0;
-    font-size: 12px;
+    font-size: 14px;
     font-family: SimHei;
   }
 }
@@ -161,10 +160,10 @@
 .modal-tag-body {
   padding: 0 32px;
   $w: 596px;
-  $h: 320px;
+  $h: 330px;
   position: absolute;
   width: $w;
-  height: $h;
+  min-height: $h;
   border-radius: 5px;
   top: 30%;
   left: 50%;
@@ -173,4 +172,5 @@
   background: #fbfbfb;
   z-index: 1000;
   box-sizing: border-box;
+  padding-bottom: 20px;
 }

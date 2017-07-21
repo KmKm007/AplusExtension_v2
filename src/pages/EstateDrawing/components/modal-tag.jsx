@@ -22,21 +22,27 @@ class ModalTag extends React.Component {
             </svg>
           </div>
           <header className="modal-property-header">标签选择</header>
-          <ul className="modal-tag-list clearfix">
-            {
-              tags.map(tag => (
-                <li
-                  className={cs({
-                    'modal-active-tag': tempSelectedTags.findIndex(t => t === tag.id) >= 0
-                  })}
-                  key={tag.id}
-                  onClick={this.onTagClick.bind(this, tag.id)}
-                >
-                  {tag.name}
-                </li>
-              ))
-            }
-          </ul>
+          {
+            tags
+            ? (
+              <ul className="modal-tag-list clearfix">
+                {
+                  tags.map(tag => (
+                    <li
+                      className={cs({
+                        'modal-active-tag': tempSelectedTags.findIndex(t => t === tag.id) >= 0
+                      })}
+                      key={tag.id}
+                      onClick={this.onTagClick.bind(this, tag.id)}
+                    >
+                      {tag.name}
+                    </li>
+                  ))
+                }
+              </ul>
+            )
+            : null
+          }
           <section className="modal-property-confirm">
             <button className="modal-property-confirm-button" onClick={handleSave}>保存</button>
           </section>

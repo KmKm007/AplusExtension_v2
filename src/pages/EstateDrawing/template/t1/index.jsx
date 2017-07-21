@@ -25,6 +25,10 @@ class T1 extends React.Component {
     }
   }
 
+  componentWillMount () {
+    this.props.fetchPropertyTags()
+  }
+
   componentDidMount () {
     const _this = this
     const { file, file2 } = this.refs
@@ -128,7 +132,7 @@ class T1 extends React.Component {
       this.setState({
         isShowBtns: false
       }, () => {
-        html2canvas(document.body).then((canvas) => {
+        html2canvas(this.refs.t1).then((canvas) => {
           this.canvas = canvas
           this.refs.canvas.appendChild(canvas)
           this.setState({
@@ -149,10 +153,10 @@ class T1 extends React.Component {
     const { showModal, propertys, selectedPropertyId, confirmedProperty,
       tags, selectedTags, tempSelectedTags, handleTagClick } = this.props
     const { isUploadFile1, isUploadFile2 } = this.state
-    const selTags = tags.filter(t => selectedTags.findIndex(i => i === t.id) > -1)
+    const selTags = tags ? tags.filter(t => selectedTags.findIndex(i => i === t.id) > -1) : null
     const detailIndex = propertys && propertys.findIndex(p => p.id === selectedPropertyId)
     return (
-      <div className="drawing-t1">
+      <div ref="t1" className="drawing-t1">
         <section className="t1-section1">
           <div className="t1-estate-photo">
             <img ref="img1" className="t1-estate-photo-img" src={estatePhoto}/>

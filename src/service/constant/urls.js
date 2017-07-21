@@ -16,4 +16,6 @@ export const GET_PROPERTY_AD_BY_AD_NO_URL = baseURL + '/propertyAd/getByAdNo'
 
 export const GET_IMAGE_BASE64 = baseURL + '/common/getImageBase64'
 
+export const GET_PROPERTY_TAGS_URL = baseURL + '/propertyTag/list'
+
 export const QRCODE_URL = 'http://qr.liantu.com/api.php?text=http://dg.centanet.com/ershoufang/_ADNO_.html'

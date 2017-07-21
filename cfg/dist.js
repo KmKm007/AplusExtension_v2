@@ -16,6 +16,7 @@ function getDefaultModules() {
       {
         test: /\.(js|jsx)$/,
         include: defaultSettings.srcPath,
+        exclude: /third/,
         loader: 'eslint-loader'
       }
     ],

@@ -1,27 +1,31 @@
 $base-red: #ea0000;
 $wholeWidth: 596px;
+$wholeHeight: 842px;
 
 .drawing-t1 {
   width: $wholeWidth;
+  height: $wholeHeight;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .t1-section1 {
-  height: 286px;
+  height: 33.97%;
   display: flex;
   flex-direction: row;
+  @at-root {
+    $per: 65.77%;
+    .t1-estate-photo {
+      flex: 1 0 $per;
+      position: relative;
+      background-color: #ffffff;
+    }
 
-}
-
-.t1-estate-photo {
-  flex: 1 0 392px;
-  position: relative;
-  background-color: #ffffff;
-}
-
-.t1-estate-type {
-  flex: 1 0 204px;
-  background-color: $base-red;
+    .t1-estate-type {
+      flex: 1 0 100%-$per;
+      background-color: $base-red;
+    }
+  }
 }
 
 .t1-estate-type-c {
@@ -70,29 +74,31 @@ $wholeWidth: 596px;
 }
 
 .t1-section2 {
-  height: 188px;
+  height: 22.33%;
   display: flex;
-}
+  @at-root {
+    $per: 31.54%;
+    .t1-qrcode {
+      flex: 1 0 $per;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $base-red;
+      & img {
+        width: 81.91%;
+        height: 81.91%;
+      }
+    }
 
-.t1-qrcode {
-  flex: 1 0 188px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $base-red;
-  & img {
-    width: 154px;
-    height: 154px;
+    .t1-design-photo {
+      position: relative;
+      flex: 1 0 100%-$per;
+    }
   }
 }
 
-.t1-design-photo {
-  position: relative;
-  flex: 1 0 $wholeWidth - 188px;
-}
-
 .t1-section3 {
-  height: 268px;
+  height: 31.83%;
   background-color: #e0e0e0;
   display: flex;
   justify-content: center;
@@ -101,7 +107,7 @@ $wholeWidth: 596px;
 }
 
 .t1-footer {
-  height: 100px;
+  height: 11.88%;
   display: flex;
 }
 
@@ -117,7 +123,7 @@ $wholeWidth: 596px;
 }
 
 .t1-footer-d2 {
-  width: 172px;
+  width: 28.86%;
   background: $base-red;
   display: flex;
   align-items: center;
@@ -139,13 +145,6 @@ $wholeWidth: 596px;
   margin-top: -$wd / 2;
   margin-left: -$wd /2;
   cursor: pointer;
-}
-
-.t1-qrcode {
-  & img {
-    width: 154px;
-    height: 154px;
-  }
 }
 
 .undisplay {
@@ -214,4 +213,10 @@ $wholeWidth: 596px;
   color: #cc0000;
   font-size: 58px;
   text-align: center;
+}
+
+@media print {
+  .drawing-t1 {
+    width: 100%;
+  }
 }

@@ -38,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchQrcodeBase64 (url) {
     dispatch(actions.estateDrawingFetchQrcodeBase64(url))
+  },
+  fetchPropertyTags () {
+    dispatch(actions.estateDrawingFetchPropertyTags())
   }
 })
 

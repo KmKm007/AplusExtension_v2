@@ -6,52 +6,12 @@ const initialState = {
   selectedPropertyId: null,
   isFetchingPropertys: null,
   isFetchingQrcodeBase64: null,
+  isFetchingPropertyTags: null,
   confirmedProperty: null,
   tempSelectedTags: [],
   selectedTags: [],
   qrcodeBase64: null,
-  tags: [
-    {
-      id: 1,
-      name: '南北通透'
-    },
-    {
-      id: 2,
-      name: '采光好'
-    },
-    {
-      id: 3,
-      name: '精装三房'
-    },
-    {
-      id: 4,
-      name: '看房方便'
-    },
-    {
-      id: 5,
-      name: '风水好'
-    },
-    {
-      id: 6,
-      name: '房本满两年'
-    },
-    {
-      id: 7,
-      name: '视野开阔'
-    },
-    {
-      id: 8,
-      name: '优质教育'
-    },
-    {
-      id: 9,
-      name: '带车位'
-    },
-    {
-      id: 10,
-      name: '采光明亮'
-    }
-  ]
+  tags: null
 }
 
 function changeModal (state, action) {
@@ -153,6 +113,23 @@ function receiveQrcodeBase64 (state, action) {
   }
 }
 
+function requestPropertyTags (state) {
+  return {
+    ...state,
+    isFetchingPropertyTags: true
+  }
+}
+
+function receivePropertyTags (state, action) {
+  const { payload } = action
+  const tags = payload.tags
+  return {
+    ...state,
+    isFetchingPropertyTags: false,
+    tags
+  }
+}
+
 const estateDrawingReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ESTATE_DRAWING_CLOSE_MODAL:
@@ -176,6 +153,10 @@ const estateDrawingReducer = (state = initialState, action) => {
       return requestQrcodeBase64(state)
     case actionTypes.ESTATE_DRAWING_RECEIVE_QRCODE_BASE64:
       return receiveQrcodeBase64(state, action)
+    case actionTypes.ESTATE_DRAWING_REQUEST_PROPERTY_TAGS:
+      return requestPropertyTags(state)
+    case actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTY_TAGS:
+      return receivePropertyTags(state, action)
     default:
       return state
   }

@@ -1,7 +1,7 @@
 import actionTypes from '@actionTypes'
 import apis from '@service/api'
 
-const { getPropertyAdByAdNo, getImageBase64 } = apis
+const { getPropertyAdByAdNo, getImageBase64, getPropertyTags } = apis
 
 export function estateDrawingCloseModal () {
   return {
@@ -159,5 +159,38 @@ export const estateDrawingFetchQrcodeBase64 = url => dispatch => {
     dispatch(estateDrawingReceiveQrcodeBase64(qrcodeBase64))
   }, errorMesg => {
     dispatch(estateDrawingReceiveQrcodeBase64Failed(errorMesg))
+  })
+}
+
+export function estateDrawingRequestPropertyTags () {
+  return {
+    type: actionTypes.ESTATE_DRAWING_REQUEST_PROPERTY_TAGS
+  }
+}
+
+export function estateDrawingReceivePropertyTags (tags) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTY_TAGS,
+    payload: {
+      tags
+    }
+  }
+}
+
+export function estateDrawingReceivePropertyTagsFailed (errorMesg) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTY_TAGS_FAILED,
+    payload: {
+      errorMesg
+    }
+  }
+}
+
+export const estateDrawingFetchPropertyTags = () => dispatch => {
+  dispatch(estateDrawingRequestPropertyTags())
+  getPropertyTags(tags => {
+    dispatch(estateDrawingReceivePropertyTags(tags))
+  }, errorMesg => {
+    dispatch(estateDrawingReceivePropertyTagsFailed(errorMesg))
   })
 }
