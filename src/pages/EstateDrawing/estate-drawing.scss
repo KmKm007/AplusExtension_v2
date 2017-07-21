@@ -149,3 +149,28 @@
     background-color: #dbdbdb;
   }
 }
+
+.modal-tag-tips {
+  color: #cc0000;
+  font-size: 12px;
+  font-family: SimSun;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modal-tag-body {
+  padding: 0 32px;
+  $w: 596px;
+  $h: 320px;
+  position: absolute;
+  width: $w;
+  height: $h;
+  border-radius: 5px;
+  top: 30%;
+  left: 50%;
+  margin-left: -$w/2;
+  margin-top: -$h/2;
+  background: #fbfbfb;
+  z-index: 1000;
+  box-sizing: border-box;
+}

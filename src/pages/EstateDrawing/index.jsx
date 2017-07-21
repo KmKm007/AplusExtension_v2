@@ -5,6 +5,10 @@ import T1 from './template/t1/index'
 import { mapStateToProps, mapDispatchToProps } from './store'
 
 class EstateDrawing extends React.Component {
+  componentWillMount () {
+    document.title = '房源纸设计'
+  }
+
   render () {
     const template = this.props.match.params.template
     let T

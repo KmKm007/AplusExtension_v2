@@ -1,7 +1,7 @@
 import actionTypes from '@actionTypes'
 import apis from '@service/api'
 
-const { getPropertyByNo } = apis
+const { getPropertyAdByAdNo, getImageBase64 } = apis
 
 export function estateDrawingCloseModal () {
   return {
@@ -59,7 +59,7 @@ export const estateDrawingFetchPropertysByNo = propertyNo => dispatch => {
     propertyNo
   }
   dispatch(estateDrawingRequestPropertysByNo(propertyNo))
-  getPropertyByNo(params, propertys => {
+  getPropertyAdByAdNo(params, propertys => {
     dispatch(estateDrawingReceivePropertys(propertys))
   }, errorMesg => {
     dispatch(estateDrawingReceivePropertysFailed(errorMesg))
@@ -94,4 +94,70 @@ export function estateDrawingRestoreTags () {
   return {
     type: actionTypes.ESTATE_DRAWING_RESTORE_TAGS
   }
+}
+
+export function estateDrawingRequestPropertyAdByAdNo (adNo) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_REQUEST_PROPERTY_AD_BY_AD_NO,
+    payload: {
+      adNo
+    }
+  }
+}
+
+export function estateDrawingReceivePropertyAd (propertyAd) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTY_AD,
+    payload: {
+      propertyAd
+    }
+  }
+}
+
+export function estateDrawingReceivePropertyAdFailed (errorMesg) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_PROPERTY_AD_FAILED,
+    payload: {
+      errorMesg
+    }
+  }
+}
+
+export function estateDrawingRequestQrcodeBase64 (url) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_REQUEST_QRCODE_BASE64,
+    payload: {
+      url
+    }
+  }
+}
+
+export function estateDrawingReceiveQrcodeBase64 (qrcodeBase64) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_QRCODE_BASE64,
+    payload: {
+      qrcodeBase64
+    }
+  }
+}
+
+export function estateDrawingReceiveQrcodeBase64Failed (errorMesg) {
+  return {
+    type: actionTypes.ESTATE_DRAWING_RECEIVE_QRCODE_BASE64_FAILED,
+    payload: {
+      errorMesg
+    }
+  }
+}
+
+export const estateDrawingFetchQrcodeBase64 = url => dispatch => {
+  dispatch(estateDrawingRequestQrcodeBase64())
+  const params = {
+    url
+  }
+  getImageBase64(params, qrcodeBase64 => {
+    dispatch(estateDrawingReceiveQrcodeBase64(qrcodeBase64))
+  }, errorMesg => {
+    dispatch(estateDrawingReceiveQrcodeBase64Failed(errorMesg))
+  })
 }

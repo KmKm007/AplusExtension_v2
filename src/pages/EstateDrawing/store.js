@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
   confirmedProperty: state.estateDrawing.confirmedProperty,
   tags: state.estateDrawing.tags,
   selectedTags: state.estateDrawing.selectedTags,
-  tempSelectedTags: state.estateDrawing.tempSelectedTags
+  tempSelectedTags: state.estateDrawing.tempSelectedTags,
+  qrcodeBase64: state.estateDrawing.qrcodeBase64
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -34,6 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
   handleTagClick (tagId) {
     dispatch(actions.estateDrawingUpdateTempSelectedTags(tagId))
+  },
+  fetchQrcodeBase64 (url) {
+    dispatch(actions.estateDrawingFetchQrcodeBase64(url))
   }
 })
 

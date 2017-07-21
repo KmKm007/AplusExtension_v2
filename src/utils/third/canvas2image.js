@@ -276,4 +276,4 @@ var Canvas2Image = function () {
 
 }()
 
-module.exports = Canvas
+module.exports = Canvas2Image

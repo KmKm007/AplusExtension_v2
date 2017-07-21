@@ -16,6 +16,7 @@ $wholeWidth: 596px;
 .t1-estate-photo {
   flex: 1 0 392px;
   position: relative;
+  background-color: #ffffff;
 }
 
 .t1-estate-type {
@@ -29,7 +30,7 @@ $wholeWidth: 596px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 15px;
+  padding:0 15px;
   font-family: 'SimHei';
 }
 
@@ -44,16 +45,27 @@ $wholeWidth: 596px;
 }
 
 .t1-estate-type-d3 {
-  font-size: 46px;
+  font-size: 40px;
   margin-top: 10px;
 }
 
 .t1-estate-type-d4 {
   margin-top: 20px;
-  cursor: pointer;
   & span {
     border: 1px dashed #949494;
     padding: 6px;
+    cursor: pointer;
+  }
+
+  @at-root .selected-tag-list {
+    & li {
+      float: left;
+      width: 85px;
+      margin-bottom: 10px;
+    }
+    & li:nth-child(2n+1) {
+      margin-right: 2px;
+    }
   }
 }
 
@@ -101,6 +113,7 @@ $wholeWidth: 596px;
   align-items: center;
   font-size: 20px;
   color: $base-red;
+  background-color: #fff;
 }
 
 .t1-footer-d2 {
@@ -149,6 +162,7 @@ $wholeWidth: 596px;
 .t1-estate-price {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .t1-estate-price-show {
@@ -169,4 +183,35 @@ $wholeWidth: 596px;
   margin-left: 5px;
   font-size: 76px;
   color: #cc0000;
+}
+
+.t1-section4 {
+  display: flex;
+  flex-direction: column;
+  $w2: 100px;
+  $h2: 300px;
+  position: absolute;
+  right: 150px;
+  top: 50%;
+  margin-top: -$h2 / 2;
+}
+
+.btn-generate, .btn-print {
+  background: $base-red;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.btn-print {
+  margin-top: 50px;
+}
+
+.t1-estate-name {
+  color: #cc0000;
+  font-size: 58px;
+  text-align: center;
 }

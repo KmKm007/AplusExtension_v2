@@ -8,7 +8,7 @@
 
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
-const dfltPort = 9999;
+const dfltPort = 8000;
 
 module.exports = {
   srcPath: srcPath,

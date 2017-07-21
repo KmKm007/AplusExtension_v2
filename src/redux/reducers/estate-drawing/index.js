@@ -5,9 +5,11 @@ const initialState = {
   propertys: [],
   selectedPropertyId: null,
   isFetchingPropertys: null,
+  isFetchingQrcodeBase64: null,
   confirmedProperty: null,
   tempSelectedTags: [],
   selectedTags: [],
+  qrcodeBase64: null,
   tags: [
     {
       id: 1,
@@ -23,7 +25,7 @@ const initialState = {
     },
     {
       id: 4,
-      name: '看房方便哦'
+      name: '看房方便'
     },
     {
       id: 5,
@@ -31,23 +33,23 @@ const initialState = {
     },
     {
       id: 6,
-      name: '南北通透'
+      name: '房本满两年'
     },
     {
       id: 7,
-      name: '采光好'
+      name: '视野开阔'
     },
     {
       id: 8,
-      name: '精装三房'
+      name: '优质教育'
     },
     {
       id: 9,
-      name: '看房方便哦'
+      name: '带车位'
     },
     {
       id: 10,
-      name: '风水好'
+      name: '采光明亮'
     }
   ]
 }
@@ -107,7 +109,11 @@ function updateTempSelectedTags (state, action) {
   if (isExist) {
     nextTempSelectedTags = tempSelectedTags.filter(t => t !== tagId)
   } else {
-    nextTempSelectedTags = [...tempSelectedTags, tagId]
+    if (tempSelectedTags.length < 4) {
+      nextTempSelectedTags = [...tempSelectedTags, tagId]
+    } else {
+      nextTempSelectedTags = tempSelectedTags
+    }
   }
   return {
     ...state,
@@ -126,6 +132,24 @@ function restoreTags (state) {
   return {
     ...state,
     tempSelectedTags: state.selectedTags
+  }
+}
+
+function requestQrcodeBase64 (state) {
+  return {
+    ...state,
+    isFetchingQrcodeBase64: true
+  }
+}
+
+function receiveQrcodeBase64 (state, action) {
+  const { payload } = action
+  let { qrcodeBase64 } = payload
+  qrcodeBase64 = 'data:image/png;base64,' + qrcodeBase64
+  return {
+    ...state,
+    isFetchingQrcodeBase64: false,
+    qrcodeBase64
   }
 }
 
@@ -148,6 +172,10 @@ const estateDrawingReducer = (state = initialState, action) => {
       return updateSelectedTags(state, action)
     case actionTypes.ESTATE_DRAWING_RESTORE_TAGS:
       return restoreTags(state)
+    case actionTypes.ESTATE_DRAWING_REQUEST_QRCODE_BASE64:
+      return requestQrcodeBase64(state)
+    case actionTypes.ESTATE_DRAWING_RECEIVE_QRCODE_BASE64:
+      return receiveQrcodeBase64(state, action)
     default:
       return state
   }
